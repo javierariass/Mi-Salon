@@ -13,6 +13,7 @@ namespace Mi_Salon.Modulos
     {
         // Lista para almacenar los nombres de los peluqueros
         static public List<string> Peluqueros = new List<string>();
+        static public List<string> Servicios = new List<string>();
 
         static public void Connection(string ruta)
         {
@@ -23,7 +24,8 @@ namespace Mi_Salon.Modulos
                 //Creacion de tablas
 
                 //Tabla de reservas
-                string createTableQuery = "CREATE TABLE IF NOT EXISTS Reservas (Nombre TEXT,Telefono INTEGER,Correo TEXT,Peluquero TEXT, Rebooking INTEGER,Fecha TEXT)"; //Rebooking 1- true 0- false
+                string createTableQuery = "CREATE TABLE IF NOT EXISTS Reservas (Nombre TEXT,Telefono INTEGER,Correo TEXT,Peluquero TEXT,Servicio TEXT, " +
+                    "Rebooking INTEGER,Fecha TEXT,Desde TEXT,Hasta TEXT)"; //Rebooking 1- true 0- false
                 SQLiteCommand command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
@@ -37,12 +39,17 @@ namespace Mi_Salon.Modulos
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
-                //Tabla de Ventas
+                //Tabla de Ausencia de clientes
                 createTableQuery = "CREATE TABLE IF NOT EXISTS Ausencia (Nombre TEXT,Telefono INTEGER,Correo TEXT,Operacion TEXT,Peluquero TEXT, Rebooking INTEGER,Fecha TEXT)";
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                //Tabla de Ausencia de clientes
+                createTableQuery = "CREATE TABLE IF NOT EXISTS Servicios (Nombre TEXT,Precio TEXT)";
+                command = new SQLiteCommand(createTableQuery, connection);
+                command.ExecuteNonQuery();
+
+                //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 //Extraccion de datos
 
                 // Consulta para obtener los nombres de la tabla Peluqueros
@@ -54,6 +61,17 @@ namespace Mi_Salon.Modulos
                 {
                     // Agregar los nombres a la lista
                     Peluqueros.Add(reader["Nombre"].ToString());
+                }
+
+                // Consulta para obtener los nombres de la tabla Servicios
+                selectQuery = "SELECT Nombre FROM Servicios";
+
+                command = new SQLiteCommand(selectQuery, connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Agregar los nombres a la lista
+                    Servicios.Add(reader["Nombre"].ToString());
                 }
             }
             
@@ -81,14 +99,15 @@ namespace Mi_Salon.Modulos
         }
 
         //Guardar en base de datos de reserva
-        static public void ReservarCita(string ruta,string nombre,int telefono,string correo,string peluquero,int rebooking,string fecha)
+        static public void ReservarCita(string ruta,string nombre,int telefono,string correo,string peluquero,string servicio,int rebooking,string fecha,string desde,string hasta)
         {
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
             {
                 connection.Open();
 
                 // Consulta para insertar un peluquero
-                string insertQuery = "INSERT INTO Reservas (Nombre, Telefono, Correo,Peluquero,Rebooking,Fecha) VALUES (@Nombre, @Telefono, @Correo,@Peluquero,@Rebooking, @Fecha)";
+                string insertQuery = "INSERT INTO Reservas (Nombre, Telefono, Correo,Peluquero,Servicio,Rebooking,Fecha,Desde,Hasta) VALUES (@Nombre, @Telefono, @Correo," +
+                    "@Peluquero,@Servicio,@Rebooking, @Fecha,@Desde, @Hasta)";
                 SQLiteCommand command = new SQLiteCommand(insertQuery, connection);
 
                 // Agregar los parámetros
@@ -96,8 +115,11 @@ namespace Mi_Salon.Modulos
                 command.Parameters.AddWithValue("@Telefono", telefono);
                 command.Parameters.AddWithValue("@Correo", correo);
                 command.Parameters.AddWithValue("@Peluquero", peluquero);
+                command.Parameters.AddWithValue("@Servicio", servicio);
                 command.Parameters.AddWithValue("@Rebooking", rebooking);
                 command.Parameters.AddWithValue("@Fecha", fecha);
+                command.Parameters.AddWithValue("@Desde", desde);
+                command.Parameters.AddWithValue("@Hasta", hasta);
 
                 // Ejecutar la consulta
                 command.ExecuteNonQuery();
