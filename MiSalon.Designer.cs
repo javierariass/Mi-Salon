@@ -1,6 +1,6 @@
 ﻿namespace Mi_Salon
 {
-    partial class Form1
+    partial class MiSalon
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PeluqueroReservado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rebooking = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Asistencia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabReservas = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
@@ -61,6 +71,11 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -76,6 +91,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Peluquero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Productos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -84,24 +103,6 @@
             this.EliminarRegistro = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PeluqueroReservado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rebooking = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label20 = new System.Windows.Forms.Label();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.NombreR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TelefonoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorreoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,10 +112,11 @@
             this.FechaR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DesdeR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HastaR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Peluquero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Productos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AsistenciaR = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabReservacionesHoy.SuspendLayout();
@@ -162,6 +164,7 @@
             this.registroDeTrabajadoresToolStripMenuItem.Name = "registroDeTrabajadoresToolStripMenuItem";
             this.registroDeTrabajadoresToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.registroDeTrabajadoresToolStripMenuItem.Text = "Registro de trabajadores";
+            this.registroDeTrabajadoresToolStripMenuItem.Click += new System.EventHandler(this.registroDeTrabajadoresToolStripMenuItem_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
@@ -200,10 +203,10 @@
             // 
             // CerrarDia
             // 
-            this.CerrarDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CerrarDia.Location = new System.Drawing.Point(643, 631);
+            this.CerrarDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CerrarDia.Location = new System.Drawing.Point(680, 616);
             this.CerrarDia.Name = "CerrarDia";
-            this.CerrarDia.Size = new System.Drawing.Size(273, 61);
+            this.CerrarDia.Size = new System.Drawing.Size(188, 61);
             this.CerrarDia.TabIndex = 4;
             this.CerrarDia.Text = "Cierre";
             this.CerrarDia.UseVisualStyleBackColor = true;
@@ -253,12 +256,76 @@
             this.Serv,
             this.Rebooking,
             this.Desde,
-            this.Hasta});
+            this.Hasta,
+            this.Asistencia});
             this.dataGridView1.Location = new System.Drawing.Point(28, 55);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1494, 555);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 250;
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            this.Telefono.Width = 200;
+            // 
+            // Correo
+            // 
+            this.Correo.HeaderText = "Correo";
+            this.Correo.Name = "Correo";
+            this.Correo.ReadOnly = true;
+            this.Correo.Width = 250;
+            // 
+            // PeluqueroReservado
+            // 
+            this.PeluqueroReservado.HeaderText = "Peluquero";
+            this.PeluqueroReservado.Name = "PeluqueroReservado";
+            this.PeluqueroReservado.ReadOnly = true;
+            this.PeluqueroReservado.Width = 250;
+            // 
+            // Serv
+            // 
+            this.Serv.HeaderText = "Servicio";
+            this.Serv.Name = "Serv";
+            this.Serv.ReadOnly = true;
+            this.Serv.Width = 200;
+            // 
+            // Rebooking
+            // 
+            this.Rebooking.HeaderText = "Rebooking";
+            this.Rebooking.Name = "Rebooking";
+            this.Rebooking.ReadOnly = true;
+            this.Rebooking.Width = 90;
+            // 
+            // Desde
+            // 
+            this.Desde.HeaderText = "Desde";
+            this.Desde.Name = "Desde";
+            this.Desde.ReadOnly = true;
+            this.Desde.Width = 75;
+            // 
+            // Hasta
+            // 
+            this.Hasta.HeaderText = "Hasta";
+            this.Hasta.Name = "Hasta";
+            this.Hasta.ReadOnly = true;
+            this.Hasta.Width = 75;
+            // 
+            // Asistencia
+            // 
+            this.Asistencia.HeaderText = "Asistío";
+            this.Asistencia.Name = "Asistencia";
+            this.Asistencia.ReadOnly = true;
+            this.Asistencia.Width = 60;
             // 
             // tabReservas
             // 
@@ -289,6 +356,16 @@
             this.tabReservas.Size = new System.Drawing.Size(1549, 740);
             this.tabReservas.TabIndex = 1;
             this.tabReservas.Text = "Agregar Reserva";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(686, 18);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(170, 42);
+            this.label20.TabIndex = 21;
+            this.label20.Text = "Reservar";
             // 
             // comboBox9
             // 
@@ -546,6 +623,56 @@
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Facturar";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(18, 324);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(78, 25);
+            this.label23.TabIndex = 23;
+            this.label23.Text = "Fecha:";
+            // 
+            // comboBox11
+            // 
+            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox11.FormattingEnabled = true;
+            this.comboBox11.Location = new System.Drawing.Point(140, 425);
+            this.comboBox11.Name = "comboBox11";
+            this.comboBox11.Size = new System.Drawing.Size(251, 33);
+            this.comboBox11.TabIndex = 22;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(18, 433);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(116, 25);
+            this.label22.TabIndex = 21;
+            this.label22.Text = "Peluquero:";
+            // 
+            // comboBox10
+            // 
+            this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Location = new System.Drawing.Point(140, 368);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(251, 33);
+            this.comboBox10.TabIndex = 20;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(18, 376);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(95, 25);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "Servicio:";
+            // 
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -697,6 +824,34 @@
             this.dataGridView2.Size = new System.Drawing.Size(926, 573);
             this.dataGridView2.TabIndex = 4;
             // 
+            // Peluquero
+            // 
+            this.Peluquero.HeaderText = "Peluquero";
+            this.Peluquero.Name = "Peluquero";
+            this.Peluquero.ReadOnly = true;
+            this.Peluquero.Width = 250;
+            // 
+            // Servicio
+            // 
+            this.Servicio.HeaderText = "Servicio";
+            this.Servicio.Name = "Servicio";
+            this.Servicio.ReadOnly = true;
+            this.Servicio.Width = 250;
+            // 
+            // Productos
+            // 
+            this.Productos.HeaderText = "Productos";
+            this.Productos.Name = "Productos";
+            this.Productos.ReadOnly = true;
+            this.Productos.Width = 250;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 130;
+            // 
             // comboBox2
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -783,11 +938,83 @@
             this.RebookingR,
             this.FechaR,
             this.DesdeR,
-            this.HastaR});
+            this.HastaR,
+            this.AsistenciaR});
             this.dataGridView3.Location = new System.Drawing.Point(30, 54);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(1494, 582);
             this.dataGridView3.TabIndex = 0;
+            // 
+            // NombreR
+            // 
+            this.NombreR.HeaderText = "Nombre";
+            this.NombreR.Name = "NombreR";
+            this.NombreR.ReadOnly = true;
+            this.NombreR.Width = 250;
+            // 
+            // TelefonoR
+            // 
+            this.TelefonoR.HeaderText = "Telefono";
+            this.TelefonoR.Name = "TelefonoR";
+            this.TelefonoR.ReadOnly = true;
+            this.TelefonoR.Width = 200;
+            // 
+            // CorreoR
+            // 
+            this.CorreoR.HeaderText = "Correo";
+            this.CorreoR.Name = "CorreoR";
+            this.CorreoR.ReadOnly = true;
+            this.CorreoR.Width = 200;
+            // 
+            // PeluqueroR
+            // 
+            this.PeluqueroR.HeaderText = "Peluquero";
+            this.PeluqueroR.Name = "PeluqueroR";
+            this.PeluqueroR.ReadOnly = true;
+            this.PeluqueroR.Width = 200;
+            // 
+            // ServicioR
+            // 
+            this.ServicioR.HeaderText = "Servicio";
+            this.ServicioR.Name = "ServicioR";
+            this.ServicioR.ReadOnly = true;
+            this.ServicioR.Width = 200;
+            // 
+            // RebookingR
+            // 
+            this.RebookingR.HeaderText = "Rebooking";
+            this.RebookingR.Name = "RebookingR";
+            this.RebookingR.ReadOnly = true;
+            this.RebookingR.Width = 90;
+            // 
+            // FechaR
+            // 
+            this.FechaR.HeaderText = "Fecha";
+            this.FechaR.Name = "FechaR";
+            this.FechaR.ReadOnly = true;
+            // 
+            // DesdeR
+            // 
+            this.DesdeR.HeaderText = "Desde";
+            this.DesdeR.Name = "DesdeR";
+            this.DesdeR.ReadOnly = true;
+            this.DesdeR.Width = 75;
+            // 
+            // HastaR
+            // 
+            this.HastaR.HeaderText = "Hasta";
+            this.HastaR.Name = "HastaR";
+            this.HastaR.ReadOnly = true;
+            this.HastaR.Width = 75;
+            // 
+            // AsistenciaR
+            // 
+            this.AsistenciaR.HeaderText = "Asistío";
+            this.AsistenciaR.Name = "AsistenciaR";
+            this.AsistenciaR.ReadOnly = true;
+            this.AsistenciaR.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AsistenciaR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.AsistenciaR.Width = 60;
             // 
             // tabPage3
             // 
@@ -828,211 +1055,7 @@
             this.Hora.Name = "Hora";
             this.Hora.ReadOnly = true;
             // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 250;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 250;
-            // 
-            // Correo
-            // 
-            this.Correo.HeaderText = "Correo";
-            this.Correo.Name = "Correo";
-            this.Correo.ReadOnly = true;
-            this.Correo.Width = 250;
-            // 
-            // PeluqueroReservado
-            // 
-            this.PeluqueroReservado.HeaderText = "Peluquero";
-            this.PeluqueroReservado.Name = "PeluqueroReservado";
-            this.PeluqueroReservado.ReadOnly = true;
-            this.PeluqueroReservado.Width = 250;
-            // 
-            // Serv
-            // 
-            this.Serv.HeaderText = "Servicio";
-            this.Serv.Name = "Serv";
-            this.Serv.ReadOnly = true;
-            this.Serv.Width = 200;
-            // 
-            // Rebooking
-            // 
-            this.Rebooking.HeaderText = "Rebooking";
-            this.Rebooking.Name = "Rebooking";
-            this.Rebooking.ReadOnly = true;
-            // 
-            // Desde
-            // 
-            this.Desde.HeaderText = "Desde";
-            this.Desde.Name = "Desde";
-            this.Desde.ReadOnly = true;
-            this.Desde.Width = 75;
-            // 
-            // Hasta
-            // 
-            this.Hasta.HeaderText = "Hasta";
-            this.Hasta.Name = "Hasta";
-            this.Hasta.ReadOnly = true;
-            this.Hasta.Width = 75;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(686, 18);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(170, 42);
-            this.label20.TabIndex = 21;
-            this.label20.Text = "Reservar";
-            // 
-            // comboBox10
-            // 
-            this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(140, 368);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(251, 33);
-            this.comboBox10.TabIndex = 20;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(18, 376);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(95, 25);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "Servicio:";
-            // 
-            // comboBox11
-            // 
-            this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(140, 425);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(251, 33);
-            this.comboBox11.TabIndex = 22;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(18, 433);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(116, 25);
-            this.label22.TabIndex = 21;
-            this.label22.Text = "Peluquero:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(18, 324);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(78, 25);
-            this.label23.TabIndex = 23;
-            this.label23.Text = "Fecha:";
-            // 
-            // NombreR
-            // 
-            this.NombreR.HeaderText = "Nombre";
-            this.NombreR.Name = "NombreR";
-            this.NombreR.ReadOnly = true;
-            this.NombreR.Width = 250;
-            // 
-            // TelefonoR
-            // 
-            this.TelefonoR.HeaderText = "Telefono";
-            this.TelefonoR.Name = "TelefonoR";
-            this.TelefonoR.ReadOnly = true;
-            this.TelefonoR.Width = 200;
-            // 
-            // CorreoR
-            // 
-            this.CorreoR.HeaderText = "Correo";
-            this.CorreoR.Name = "CorreoR";
-            this.CorreoR.ReadOnly = true;
-            this.CorreoR.Width = 250;
-            // 
-            // PeluqueroR
-            // 
-            this.PeluqueroR.HeaderText = "Peluquero";
-            this.PeluqueroR.Name = "PeluqueroR";
-            this.PeluqueroR.ReadOnly = true;
-            this.PeluqueroR.Width = 200;
-            // 
-            // ServicioR
-            // 
-            this.ServicioR.HeaderText = "Servicio";
-            this.ServicioR.Name = "ServicioR";
-            this.ServicioR.ReadOnly = true;
-            this.ServicioR.Width = 200;
-            // 
-            // RebookingR
-            // 
-            this.RebookingR.HeaderText = "Rebooking";
-            this.RebookingR.Name = "RebookingR";
-            this.RebookingR.ReadOnly = true;
-            // 
-            // FechaR
-            // 
-            this.FechaR.HeaderText = "Fecha";
-            this.FechaR.Name = "FechaR";
-            this.FechaR.ReadOnly = true;
-            // 
-            // DesdeR
-            // 
-            this.DesdeR.HeaderText = "Desde";
-            this.DesdeR.Name = "DesdeR";
-            this.DesdeR.ReadOnly = true;
-            this.DesdeR.Width = 75;
-            // 
-            // HastaR
-            // 
-            this.HastaR.HeaderText = "Hasta";
-            this.HastaR.Name = "HastaR";
-            this.HastaR.ReadOnly = true;
-            this.HastaR.Width = 75;
-            // 
-            // Peluquero
-            // 
-            this.Peluquero.HeaderText = "Peluquero";
-            this.Peluquero.Name = "Peluquero";
-            this.Peluquero.ReadOnly = true;
-            this.Peluquero.Width = 250;
-            // 
-            // Servicio
-            // 
-            this.Servicio.HeaderText = "Servicio";
-            this.Servicio.Name = "Servicio";
-            this.Servicio.ReadOnly = true;
-            this.Servicio.Width = 250;
-            // 
-            // Productos
-            // 
-            this.Productos.HeaderText = "Productos";
-            this.Productos.Name = "Productos";
-            this.Productos.ReadOnly = true;
-            this.Productos.Width = 250;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Width = 130;
-            // 
-            // Form1
+            // MiSalon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1042,7 +1065,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1600, 900);
             this.MinimumSize = new System.Drawing.Size(1598, 850);
-            this.Name = "Form1";
+            this.Name = "MiSalon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mi Salon";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1129,20 +1152,16 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox comboBox9;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PeluqueroReservado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Serv;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Rebooking;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desde;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hasta;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox comboBox11;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Peluquero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Productos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreR;
         private System.Windows.Forms.DataGridViewTextBoxColumn TelefonoR;
         private System.Windows.Forms.DataGridViewTextBoxColumn CorreoR;
@@ -1152,10 +1171,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaR;
         private System.Windows.Forms.DataGridViewTextBoxColumn DesdeR;
         private System.Windows.Forms.DataGridViewTextBoxColumn HastaR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Peluquero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Productos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn AsistenciaR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PeluqueroReservado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serv;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Rebooking;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Desde;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hasta;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
     }
 }
 

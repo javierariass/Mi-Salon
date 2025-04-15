@@ -25,7 +25,7 @@ namespace Mi_Salon.Modulos
 
                 //Tabla de reservas
                 string createTableQuery = "CREATE TABLE IF NOT EXISTS Reservas (Nombre TEXT,Telefono INTEGER,Correo TEXT,Peluquero TEXT,Servicio TEXT, " +
-                    "Rebooking INTEGER,Fecha TEXT,Desde TEXT,Hasta TEXT)"; //Rebooking 1- true 0- false
+                    "Rebooking INTEGER,Fecha TEXT,Desde TEXT,Hasta TEXT,Asistencia INTEGER)"; //Rebooking 1- true 0- false
                 SQLiteCommand command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
@@ -44,7 +44,7 @@ namespace Mi_Salon.Modulos
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
-                //Tabla de Ausencia de clientes
+                //Tabla de servicios al cliente
                 createTableQuery = "CREATE TABLE IF NOT EXISTS Servicios (Nombre TEXT,Precio TEXT)";
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
@@ -106,8 +106,8 @@ namespace Mi_Salon.Modulos
                 connection.Open();
 
                 // Consulta para insertar un peluquero
-                string insertQuery = "INSERT INTO Reservas (Nombre, Telefono, Correo,Peluquero,Servicio,Rebooking,Fecha,Desde,Hasta) VALUES (@Nombre, @Telefono, @Correo," +
-                    "@Peluquero,@Servicio,@Rebooking, @Fecha,@Desde, @Hasta)";
+                string insertQuery = "INSERT INTO Reservas (Nombre, Telefono, Correo,Peluquero,Servicio,Rebooking,Fecha,Desde,Hasta,Asistencia) VALUES (@Nombre, @Telefono, @Correo," +
+                    "@Peluquero,@Servicio,@Rebooking, @Fecha,@Desde, @Hasta,@Asistencia)";
                 SQLiteCommand command = new SQLiteCommand(insertQuery, connection);
 
                 // Agregar los parámetros
@@ -120,6 +120,7 @@ namespace Mi_Salon.Modulos
                 command.Parameters.AddWithValue("@Fecha", fecha);
                 command.Parameters.AddWithValue("@Desde", desde);
                 command.Parameters.AddWithValue("@Hasta", hasta);
+                command.Parameters.AddWithValue("@Asistencia", 0);
 
                 // Ejecutar la consulta
                 command.ExecuteNonQuery();
@@ -150,10 +151,34 @@ namespace Mi_Salon.Modulos
                     return false;
                 }
             }
-            return false;
         }
 
-        //Eliminar de la base de datos las reservas del dia que no acudieron a su cita
+        //Eliminar de la base de datos reserva
+        static public bool EliminarTrabajador(string ruta, string nombre, int telefono, string correo)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
+            {
+                connection.Open();
+
+                string deleteQuery = "DELETE FROM Peluqueros WHERE Nombre = @Nombre AND Telefono = @Telefono AND Correo = @Correo";
+                SQLiteCommand command = new SQLiteCommand(deleteQuery, connection);
+                
+                try
+                {
+                    command.Parameters.AddWithValue("@Nombre", nombre);
+                    command.Parameters.AddWithValue("@Telefono", telefono);
+                    command.Parameters.AddWithValue("@Correo", correo);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
+        //Agregar a la base de datos ausencia las reservas del dia que no acudieron a su cita
         static public void CierreDiario(string ruta, List<(string Nombre, int Telefono)> registros)
         {
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
@@ -166,26 +191,60 @@ namespace Mi_Salon.Modulos
                     {
                         foreach (var registro in registros)
                         {
-                            // Consulta para eliminar cada registro
-                            string deleteQuery = "DELETE FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono";
-                            SQLiteCommand command = new SQLiteCommand(deleteQuery, connection);
 
-                            // Agregar los parámetros
-                            command.Parameters.AddWithValue("@Nombre", registro.Nombre);
-                            command.Parameters.AddWithValue("@Telefono", registro.Telefono);
+                            // Obtener los datos de la reserva
+                            string selectQuery = "SELECT Nombre, Telefono, Correo,Servicio, Peluquero, Rebooking, Fecha FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono";
+                            SQLiteCommand selectCommand = new SQLiteCommand(selectQuery, connection);
+                            selectCommand.Parameters.AddWithValue("@Nombre", registro.Nombre);
+                            selectCommand.Parameters.AddWithValue("@Telefono", registro.Telefono);
 
-                            // Ejecutar la consulta
-                            command.ExecuteNonQuery();
+                            SQLiteDataReader reader = selectCommand.ExecuteReader();
+
+                            if (reader.Read()) // Si encontramos la reserva
+                            {
+                                // Insertar los valores en la tabla Ausencia
+                                string insertQuery = "INSERT INTO Ausencia (Nombre, Telefono, Correo,Operacion, Peluquero, Rebooking, Fecha) " +
+                                    "VALUES (@Nombre, @Telefono, @Correo,@Operacion, @Peluquero, @Rebooking, @Fecha)";
+                                SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection);
+
+                                insertCommand.Parameters.AddWithValue("@Nombre", reader["Nombre"]);
+                                insertCommand.Parameters.AddWithValue("@Telefono", reader["Telefono"]);
+                                insertCommand.Parameters.AddWithValue("@Correo", reader["Correo"]);
+                                insertCommand.Parameters.AddWithValue("@Operacion", reader["Servicio"]);
+                                insertCommand.Parameters.AddWithValue("@Peluquero", reader["Peluquero"]);
+                                insertCommand.Parameters.AddWithValue("@Rebooking", reader["Rebooking"]);
+                                insertCommand.Parameters.AddWithValue("@Fecha", reader["Fecha"]);
+
+                                insertCommand.ExecuteNonQuery();
+                            }
+
+                            reader.Close();
+
+                            //Eliminar de la base de datos Pendiente
+                            /*
+                                                        // Consulta para eliminar cada registro
+                                                        string deleteQuery = "DELETE FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono";
+                                                        SQLiteCommand command = new SQLiteCommand(deleteQuery, connection);
+
+                                                        // Agregar los parámetros
+                                                        command.Parameters.AddWithValue("@Nombre", registro.Nombre);
+                                                        command.Parameters.AddWithValue("@Telefono", registro.Telefono);
+
+                                                        // Ejecutar la consulta
+                                                        command.ExecuteNonQuery();
+                            */
                         }
+
 
                         // Confirmar la transacción
                         transaction.Commit();
+                        MessageBox.Show("Cierre diario realizado con exito", "Aviso");
                     }
                     catch 
                     {
                         // Revertir la transacción si algo falla
                         transaction.Rollback();
-                        MessageBox.Show("SAD");
+                        MessageBox.Show("Cierre diario fallido", "Aviso");
                     }
                 }
             }

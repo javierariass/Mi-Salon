@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace Mi_Salon
 {
-    public partial class Form1 : Form
+    public partial class MiSalon : Form
     {
         string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MiSalon.db";
         List<string> NCliente = new List<string>();
 
-        public Form1()
+        public MiSalon()
         {
             InitializeComponent();
             Functions.Connection(appDataPath);
@@ -39,7 +39,6 @@ namespace Mi_Salon
         {
 
         }
-
         //Actualizar Datos del form
         private void Actualizar()
         {
@@ -163,7 +162,7 @@ namespace Mi_Salon
                             row.Cells["Rebooking"].Value = int.Parse(reader["Rebooking"].ToString()) == 1;
                             row.Cells["Desde"].Value = reader["Desde"];
                             row.Cells["Hasta"].Value = reader["Hasta"];
-
+                            row.Cells["Asistencia"].Value = int.Parse(reader["Asistencia"].ToString()) == 1;
                         }
                     }
                 }
@@ -198,6 +197,7 @@ namespace Mi_Salon
                             row.Cells["FechaR"].Value = DateTime.Parse(reader["Fecha"].ToString()).ToString("yyyy-MM-dd"); // Ensure formatted date
                             row.Cells["DesdeR"].Value = reader["Desde"];
                             row.Cells["HastaR"].Value = reader["Hasta"];
+                            row.Cells["AsistenciaR"].Value = int.Parse(reader["Asistencia"].ToString()) == 1;
                         }
                     }
                 }
@@ -214,7 +214,7 @@ namespace Mi_Salon
                     string desde = comboBox5.Text + ":" + comboBox6.Text;
                     string hasta = comboBox7.Text + ":" + comboBox8.Text;
                     desde = int.Parse(comboBox5.Text) >= 10 ? desde + " AM" : desde + " PM";
-                    hasta = int.Parse(comboBox6.Text) >= 10 ? hasta + " AM" : hasta + " PM";
+                    hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " AM" : hasta + " PM";
                     string date = DateTime.Parse(dateTimeReservation.Text).ToString("yyyy-MM-dd");
                     Functions.ReservarCita(appDataPath, textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, PeluquerosReserva.SelectedItem.ToString(),comboBox9.Text, 0,date ,desde,hasta);
                     MessageBox.Show("Reserva realizada", "Aviso");
@@ -270,12 +270,12 @@ namespace Mi_Salon
         {
             List<(string Nombre, int Telefono)> registros = new List<(string, int)>();
 
-            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (!fila.IsNewRow)
+                if (!row.IsNewRow && !bool.Parse(row.Cells["Asistencia"].Value.ToString()))
                 {
-                    string nombre = fila.Cells["Nombre"].Value.ToString();
-                    int telefono = Convert.ToInt32(fila.Cells["Telefono"].Value);
+                    string nombre = row.Cells["Nombre"].Value.ToString();
+                    int telefono = Convert.ToInt32(row.Cells["Telefono"].Value);
 
                     registros.Add((nombre, telefono));
                 }
@@ -320,9 +320,6 @@ namespace Mi_Salon
                     {
                         while (reader.Read())
                         {
-                            int rowIndex = dataGridView1.Rows.Add();
-                            DataGridViewRow row = dataGridView4.Rows[rowIndex];
-
                             nota = reader["Nombre"].ToString() + " " + reader["Servicio"].ToString();
                             peluquero = reader["Peluquero"].ToString();
                             desde = reader["Desde"].ToString();
@@ -378,7 +375,7 @@ namespace Mi_Salon
             Actualizar();
         }
 
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+  private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -411,6 +408,12 @@ namespace Mi_Salon
         private void label19_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void registroDeTrabajadoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Registro_Trabajadores Registro = new Registro_Trabajadores();
+            Registro.ShowDialog();
         }
     }
 }

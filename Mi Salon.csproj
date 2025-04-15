@@ -66,17 +66,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MiSalon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MiSalon.Designer.cs">
+      <DependentUpon>MiSalon.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Functions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registro Trabajadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro Trabajadores.Designer.cs">
+      <DependentUpon>Registro Trabajadores.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MiSalon.resx">
+      <DependentUpon>MiSalon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Registro Trabajadores.resx">
+      <DependentUpon>Registro Trabajadores.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
