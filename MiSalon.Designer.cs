@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MiSalon));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.operacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeTrabajadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informacionGeneralToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabReservacionesHoy = new System.Windows.Forms.TabPage();
             this.CerrarDia = new System.Windows.Forms.Button();
@@ -117,6 +119,13 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabReservacionesHoy.SuspendLayout();
@@ -147,7 +156,8 @@
             // 
             this.operacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.actualizarToolStripMenuItem,
-            this.registroDeTrabajadoresToolStripMenuItem});
+            this.registroDeTrabajadoresToolStripMenuItem,
+            this.reportesToolStripMenuItem});
             this.operacionesToolStripMenuItem.Name = "operacionesToolStripMenuItem";
             this.operacionesToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
             this.operacionesToolStripMenuItem.Text = "Operaciones";
@@ -168,9 +178,18 @@
             // 
             // acercaDeToolStripMenuItem
             // 
+            this.acercaDeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.informacionGeneralToolStripMenuItem});
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.acercaDeToolStripMenuItem.Text = "Acerca de:";
+            // 
+            // informacionGeneralToolStripMenuItem
+            // 
+            this.informacionGeneralToolStripMenuItem.Name = "informacionGeneralToolStripMenuItem";
+            this.informacionGeneralToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.informacionGeneralToolStripMenuItem.Text = "Informacion General";
+            this.informacionGeneralToolStripMenuItem.Click += new System.EventHandler(this.informacionGeneralToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -592,6 +611,12 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.DimGray;
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.label24);
+            this.tabPage2.Controls.Add(this.comboBox15);
+            this.tabPage2.Controls.Add(this.comboBox14);
+            this.tabPage2.Controls.Add(this.comboBox13);
+            this.tabPage2.Controls.Add(this.comboBox12);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.comboBox11);
             this.tabPage2.Controls.Add(this.label22);
@@ -627,7 +652,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(18, 324);
+            this.label23.Location = new System.Drawing.Point(18, 345);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(78, 25);
             this.label23.TabIndex = 23;
@@ -638,7 +663,7 @@
             this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(140, 425);
+            this.comboBox11.Location = new System.Drawing.Point(140, 523);
             this.comboBox11.Name = "comboBox11";
             this.comboBox11.Size = new System.Drawing.Size(251, 33);
             this.comboBox11.TabIndex = 22;
@@ -647,7 +672,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(18, 433);
+            this.label22.Location = new System.Drawing.Point(18, 531);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(116, 25);
             this.label22.TabIndex = 21;
@@ -658,7 +683,7 @@
             this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(140, 368);
+            this.comboBox10.Location = new System.Drawing.Point(140, 466);
             this.comboBox10.Name = "comboBox10";
             this.comboBox10.Size = new System.Drawing.Size(251, 33);
             this.comboBox10.TabIndex = 20;
@@ -667,7 +692,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(18, 376);
+            this.label21.Location = new System.Drawing.Point(18, 474);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(95, 25);
             this.label21.TabIndex = 19;
@@ -705,18 +730,19 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(199, 486);
+            this.button6.Location = new System.Drawing.Point(199, 609);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(112, 33);
             this.button6.TabIndex = 15;
             this.button6.Text = "Reservar";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(140, 315);
+            this.dateTimePicker1.Location = new System.Drawing.Point(140, 336);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(251, 31);
             this.dateTimePicker1.TabIndex = 14;
@@ -725,7 +751,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(190, 255);
+            this.label13.Location = new System.Drawing.Point(212, 286);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(121, 25);
             this.label13.TabIndex = 13;
@@ -1055,6 +1081,103 @@
             this.Hora.Name = "Hora";
             this.Hora.ReadOnly = true;
             // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            this.reportesToolStripMenuItem.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Items.AddRange(new object[] {
+            "10",
+            "11",
+            "12",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06"});
+            this.comboBox12.Location = new System.Drawing.Point(128, 409);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(57, 33);
+            this.comboBox12.TabIndex = 24;
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Items.AddRange(new object[] {
+            "00",
+            "15",
+            "30",
+            "45"});
+            this.comboBox13.Location = new System.Drawing.Point(191, 409);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(58, 33);
+            this.comboBox13.TabIndex = 25;
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Items.AddRange(new object[] {
+            "00",
+            "15",
+            "30",
+            "45"});
+            this.comboBox15.Location = new System.Drawing.Point(347, 409);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(62, 33);
+            this.comboBox15.TabIndex = 27;
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Items.AddRange(new object[] {
+            "10",
+            "11",
+            "12",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06"});
+            this.comboBox14.Location = new System.Drawing.Point(279, 409);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(62, 33);
+            this.comboBox14.TabIndex = 26;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(150, 381);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(80, 25);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "Desde:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(317, 381);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(74, 25);
+            this.label25.TabIndex = 29;
+            this.label25.Text = "Hasta:";
+            // 
             // MiSalon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1062,6 +1185,7 @@
             this.ClientSize = new System.Drawing.Size(1582, 811);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1600, 900);
             this.MinimumSize = new System.Drawing.Size(1598, 850);
@@ -1181,6 +1305,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Desde;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hasta;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
+        private System.Windows.Forms.ToolStripMenuItem informacionGeneralToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox comboBox15;
+        private System.Windows.Forms.ComboBox comboBox14;
+        private System.Windows.Forms.ComboBox comboBox13;
+        private System.Windows.Forms.ComboBox comboBox12;
     }
 }
 

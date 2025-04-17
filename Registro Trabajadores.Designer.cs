@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registro_Trabajadores));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.NombreT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TelefonoT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CorreoT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.NombreT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TelefonoT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CorreoT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,6 +103,27 @@
             this.dataGridView1.Size = new System.Drawing.Size(844, 448);
             this.dataGridView1.TabIndex = 5;
             // 
+            // NombreT
+            // 
+            this.NombreT.HeaderText = "Nombre";
+            this.NombreT.Name = "NombreT";
+            this.NombreT.ReadOnly = true;
+            this.NombreT.Width = 250;
+            // 
+            // TelefonoT
+            // 
+            this.TelefonoT.HeaderText = "Telefono";
+            this.TelefonoT.Name = "TelefonoT";
+            this.TelefonoT.ReadOnly = true;
+            this.TelefonoT.Width = 250;
+            // 
+            // CorreoT
+            // 
+            this.CorreoT.HeaderText = "Correo";
+            this.CorreoT.Name = "CorreoT";
+            this.CorreoT.ReadOnly = true;
+            this.CorreoT.Width = 300;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -142,27 +164,6 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Trabajadores";
             // 
-            // NombreT
-            // 
-            this.NombreT.HeaderText = "Nombre";
-            this.NombreT.Name = "NombreT";
-            this.NombreT.ReadOnly = true;
-            this.NombreT.Width = 250;
-            // 
-            // TelefonoT
-            // 
-            this.TelefonoT.HeaderText = "Telefono";
-            this.TelefonoT.Name = "TelefonoT";
-            this.TelefonoT.ReadOnly = true;
-            this.TelefonoT.Width = 250;
-            // 
-            // CorreoT
-            // 
-            this.CorreoT.HeaderText = "Correo";
-            this.CorreoT.Name = "CorreoT";
-            this.CorreoT.ReadOnly = true;
-            this.CorreoT.Width = 300;
-            // 
             // Registro_Trabajadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,9 +180,11 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1492, 656);
             this.MinimumSize = new System.Drawing.Size(1492, 656);
             this.Name = "Registro_Trabajadores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro_Trabajadores";
             this.Load += new System.EventHandler(this.Registro_Trabajadores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

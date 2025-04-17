@@ -5,11 +5,18 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using System.Xml.XPath;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Microsoft.Win32;
 
 namespace Mi_Salon
 {
@@ -21,7 +28,6 @@ namespace Mi_Salon
         public MiSalon()
         {
             InitializeComponent();
-            Functions.Connection(appDataPath);
             Actualizar();
         }
 
@@ -42,6 +48,7 @@ namespace Mi_Salon
         //Actualizar Datos del form
         private void Actualizar()
         {
+            Functions.Connection(appDataPath);
             string currentDate = DateTime.Now.ToString("yyyy-MM-dd"); // Standardized date format
             label7.Text = currentDate; // Ensure label uses the same format as the database
 
@@ -49,17 +56,26 @@ namespace Mi_Salon
             RellenarReservas();
 
             //Establecer la agenda
-            RellenarAgenda(dataGridView4,Functions.Peluqueros.ToArray());
+            RellenarAgenda(dataGridView4, Functions.Peluqueros.ToArray());
 
             // Peluqueros con los que puede reservar
             PeluquerosReserva.Items.Clear();
             PeluquerosReserva.Items.AddRange(Functions.Peluqueros.ToArray());
             if (Functions.Peluqueros.Count != 0) PeluquerosReserva.SelectedIndex = 0;
 
+            comboBox11.Items.Clear();
+            comboBox11.Items.AddRange(Functions.Peluqueros.ToArray());
+            if (Functions.Peluqueros.Count != 0) comboBox11.SelectedIndex = 0;
+
             //Servicios que puede solicitar
             comboBox9.Items.Clear();
             comboBox9.Items.AddRange(Functions.Servicios.ToArray());
             if (Functions.Servicios.Count != 0) comboBox9.SelectedIndex = 0;
+
+            comboBox10.Items.Clear();
+            comboBox10.Items.AddRange(Functions.Servicios.ToArray());
+            if (Functions.Servicios.Count != 0) comboBox10.SelectedIndex = 0;
+
 
             // Clientes para facturar
             comboBox1.Items.Clear();
@@ -81,6 +97,10 @@ namespace Mi_Salon
             comboBox6.SelectedIndex = 0;
             comboBox7.SelectedIndex = 0;
             comboBox8.SelectedIndex = 1;
+            comboBox12.SelectedIndex = 0;
+            comboBox13.SelectedIndex = 0;
+            comboBox14.SelectedIndex = 0;
+            comboBox15.SelectedIndex = 1;
         }
 
         //Horas en la agenda
@@ -216,8 +236,19 @@ namespace Mi_Salon
                     desde = int.Parse(comboBox5.Text) >= 10 ? desde + " AM" : desde + " PM";
                     hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " AM" : hasta + " PM";
                     string date = DateTime.Parse(dateTimeReservation.Text).ToString("yyyy-MM-dd");
-                    Functions.ReservarCita(appDataPath, textBox1.Text, int.Parse(textBox2.Text), textBox3.Text, PeluquerosReserva.SelectedItem.ToString(),comboBox9.Text, 0,date ,desde,hasta);
+                    string peluquero = PeluquerosReserva.SelectedItem.ToString();
+                    int number = int.Parse(textBox2.Text);
+                    string correo = textBox3.Text;
+                    string nombre = textBox1.Text;
+
+                    Functions.ReservarCita(appDataPath,nombre ,number , correo,peluquero , comboBox9.Text, 0, date, desde, hasta);
                     MessageBox.Show("Reserva realizada", "Aviso");
+
+                    if (!Functions.IsNewClient(appDataPath, textBox1.Text))
+                    {
+                        Functions.RegisterNewClient(appDataPath, nombre, number,correo,peluquero, date);
+                    }
+
                     textBox1.Text = "";
                     textBox2.Text = "";
                     textBox3.Text = "";
@@ -298,14 +329,14 @@ namespace Mi_Salon
         //Actualizar Agenda
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            RellenarAgenda(dataGridView4,Functions.Peluqueros.ToArray());
+            RellenarAgenda(dataGridView4, Functions.Peluqueros.ToArray());
         }
 
         //Cargar datos a la agenda
         private void DatosAgenda()
         {
             string fecha = DateTime.Parse(dateTimePicker2.Value.ToString()).ToString("yyyy-MM-dd");
-            string nota,peluquero,desde,hasta;
+            string nota, peluquero, desde, hasta;
 
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={appDataPath};Version=3;"))
             {
@@ -332,15 +363,20 @@ namespace Mi_Salon
         }
 
         //Ubicar datos agenda
-        private void UbicarDatosAgenda(string nota,string peluquero,string desde,string hasta)
+        private void UbicarDatosAgenda(string nota, string peluquero, string desde, string hasta)
         {
-            
-            for(int i = 0; i < dataGridView4.RowCount;i++)
+
+            for (int i = 0; i < dataGridView4.RowCount; i++)
             {
                 DataGridViewRow row = dataGridView4.Rows[i];
+                dataGridView4.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 if (!row.IsNewRow && desde == row.Cells["Hora"].Value.ToString())
                 {
-                    row.Cells[peluquero].Value = nota;
+                    if (row.Cells[peluquero].Value == null) row.Cells[peluquero].Value = nota;
+                    else
+                    {
+                        row.Cells[peluquero].Value = row.Cells[peluquero].Value.ToString() + "\n" + nota;
+                    }
                     CambiarColorCeldas(peluquero, desde, hasta);
                     break;
                 }
@@ -362,7 +398,7 @@ namespace Mi_Salon
                         row = dataGridView4.Rows[i];
                         if (row.IsNewRow) break;
                         row.Cells[peluquero].Style.BackColor = Color.LightGreen;
-                        
+
                     }
                     break;
                 }
@@ -375,7 +411,7 @@ namespace Mi_Salon
             Actualizar();
         }
 
-  private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -409,11 +445,65 @@ namespace Mi_Salon
         {
 
         }
-
+        //Menu de registro de trabajadores
         private void registroDeTrabajadoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Registro_Trabajadores Registro = new Registro_Trabajadores();
             Registro.ShowDialog();
+        }
+
+        private void informacionGeneralToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Informacion_General info = new Informacion_General();
+            info.ShowDialog();
+        }
+
+        //Menu de reportes
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reporte reporte = new Reporte();
+            reporte.ShowDialog();
+        }
+
+        //Reservar rebooking
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string desde = comboBox12.Text + ":" + comboBox13.Text;
+            string hasta = comboBox14.Text + ":" + comboBox15.Text;
+            desde = int.Parse(comboBox5.Text) >= 10 ? desde + " AM" : desde + " PM";
+            hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " AM" : hasta + " PM";
+            string nombre = comboBox1.Text;
+            string peluquero = comboBox11.Text;
+            string servicio = comboBox10.Text;
+            string date = DateTime.Parse(dateTimePicker1.Text).ToString("yyyy-MM-dd");
+            int number = 0;
+            string correo = "";
+
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={appDataPath};Version=3;"))
+            {
+                connection.Open();
+
+                string selectQuery = "SELECT Telefono, Correo FROM Reservas WHERE Fecha = @Fecha";
+
+                using (SQLiteCommand selectCommand = new SQLiteCommand(selectQuery, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@Fecha", DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+                    using (SQLiteDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Asignar los valores obtenidos
+                            number = Convert.ToInt32(reader["Telefono"]);
+                            correo = reader["Correo"].ToString();
+                        }
+                    }
+                }
+            }
+
+            Functions.ReservarCita(appDataPath, nombre, number, correo, peluquero, servicio, 1, date, desde, hasta);
+            MessageBox.Show("Reserva realizada.", "Alerta");
+            Actualizar();
         }
     }
 }

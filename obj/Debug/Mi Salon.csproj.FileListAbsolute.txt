@@ -18,3 +18,9 @@ C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.exe
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.pdb
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.MiSalon.resources
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Registro_Trabajadores.resources
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Informacion_General.resources
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\itextsharp.dll
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\itextsharp.xml
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Reporte.resources
