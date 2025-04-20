@@ -32,9 +32,9 @@ namespace Mi_Salon
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox3.Text))
+                if (!string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox1.Text))
                 {
-                    Functions.RegistrarPeluquero(appDataPath, textBox1.Text, int.Parse(textBox2.Text), textBox3.Text);
+                    Functions.RegistrarPeluquero(appDataPath, textBox1.Text, int.Parse(textBox2.Text));
                     MessageBox.Show("Registrado con exito.", "Informe");
                     Actualizar();
                 }
@@ -51,9 +51,8 @@ namespace Mi_Salon
             {
                 string nombre = dataGridView1.SelectedRows[0].Cells["NombreT"].Value.ToString();
                 int telefono = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["TelefonoT"].Value);
-                string correo = dataGridView1.SelectedRows[0].Cells["CorreoT"].Value.ToString();
 
-                if (Functions.EliminarTrabajador(appDataPath, nombre, telefono, correo))
+                if (Functions.EliminarTrabajador(appDataPath, nombre, telefono))
                 {
                     MessageBox.Show("Registro de tranajador eliminado.", "Aviso");
                 }
@@ -89,7 +88,6 @@ namespace Mi_Salon
 
                             row.Cells["NombreT"].Value = reader["Nombre"];
                             row.Cells["TelefonoT"].Value = reader["Telefono"];
-                            row.Cells["CorreoT"].Value = reader["Correo"];
                         }
                     }
                 }

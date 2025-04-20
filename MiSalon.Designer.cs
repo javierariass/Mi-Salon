@@ -33,11 +33,11 @@
             this.operacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroDeTrabajadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionGeneralToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabReservacionesHoy = new System.Windows.Forms.TabPage();
-            this.CerrarDia = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -73,6 +73,13 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -81,30 +88,24 @@
             this.button7 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.Peluquero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Servicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Productos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.EliminarRegistro = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TelefonoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorreoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -115,17 +116,19 @@
             this.DesdeR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HastaR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AsistenciaR = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.NameA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TelefonoA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CorreoA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabReservacionesHoy.SuspendLayout();
@@ -137,6 +140,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -176,6 +181,13 @@
             this.registroDeTrabajadoresToolStripMenuItem.Text = "Registro de trabajadores";
             this.registroDeTrabajadoresToolStripMenuItem.Click += new System.EventHandler(this.registroDeTrabajadoresToolStripMenuItem_Click);
             // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            this.reportesToolStripMenuItem.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
+            // 
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -198,6 +210,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(13, 28);
             this.tabControl1.Name = "tabControl1";
@@ -208,7 +221,6 @@
             // tabReservacionesHoy
             // 
             this.tabReservacionesHoy.BackColor = System.Drawing.Color.DimGray;
-            this.tabReservacionesHoy.Controls.Add(this.CerrarDia);
             this.tabReservacionesHoy.Controls.Add(this.label7);
             this.tabReservacionesHoy.Controls.Add(this.label6);
             this.tabReservacionesHoy.Controls.Add(this.label5);
@@ -219,17 +231,6 @@
             this.tabReservacionesHoy.Size = new System.Drawing.Size(1549, 740);
             this.tabReservacionesHoy.TabIndex = 0;
             this.tabReservacionesHoy.Text = "Reservaciones de hoy";
-            // 
-            // CerrarDia
-            // 
-            this.CerrarDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CerrarDia.Location = new System.Drawing.Point(680, 616);
-            this.CerrarDia.Name = "CerrarDia";
-            this.CerrarDia.Size = new System.Drawing.Size(188, 61);
-            this.CerrarDia.TabIndex = 4;
-            this.CerrarDia.Text = "Cierre";
-            this.CerrarDia.UseVisualStyleBackColor = true;
-            this.CerrarDia.Click += new System.EventHandler(this.button2_Click);
             // 
             // label7
             // 
@@ -279,7 +280,7 @@
             this.Asistencia});
             this.dataGridView1.Location = new System.Drawing.Point(28, 55);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1494, 555);
+            this.dataGridView1.Size = new System.Drawing.Size(1494, 640);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -611,6 +612,14 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.DimGray;
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.comboBox2);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.comboBox3);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.comboBox15);
@@ -625,20 +634,11 @@
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.textBox4);
             this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.button6);
             this.tabPage2.Controls.Add(this.dateTimePicker1);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.button5);
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Controls.Add(this.comboBox4);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.comboBox3);
-            this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Controls.Add(this.comboBox2);
-            this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 27);
@@ -648,11 +648,114 @@
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Facturar";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.LightGray;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(126, 645);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(252, 33);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "Confirmar rebooking";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(317, 419);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(74, 25);
+            this.label25.TabIndex = 29;
+            this.label25.Text = "Hasta:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(150, 419);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(80, 25);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "Desde:";
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Items.AddRange(new object[] {
+            "00",
+            "15",
+            "30",
+            "45"});
+            this.comboBox15.Location = new System.Drawing.Point(347, 447);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(62, 33);
+            this.comboBox15.TabIndex = 27;
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Items.AddRange(new object[] {
+            "10",
+            "11",
+            "12",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06"});
+            this.comboBox14.Location = new System.Drawing.Point(279, 447);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(62, 33);
+            this.comboBox14.TabIndex = 26;
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Items.AddRange(new object[] {
+            "00",
+            "15",
+            "30",
+            "45"});
+            this.comboBox13.Location = new System.Drawing.Point(203, 447);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(58, 33);
+            this.comboBox13.TabIndex = 25;
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Items.AddRange(new object[] {
+            "10",
+            "11",
+            "12",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06"});
+            this.comboBox12.Location = new System.Drawing.Point(140, 447);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(57, 33);
+            this.comboBox12.TabIndex = 24;
+            // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(18, 345);
+            this.label23.Location = new System.Drawing.Point(35, 380);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(78, 25);
             this.label23.TabIndex = 23;
@@ -663,16 +766,16 @@
             this.comboBox11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(140, 523);
+            this.comboBox11.Location = new System.Drawing.Point(140, 561);
             this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(251, 33);
+            this.comboBox11.Size = new System.Drawing.Size(269, 33);
             this.comboBox11.TabIndex = 22;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(18, 531);
+            this.label22.Location = new System.Drawing.Point(18, 569);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(116, 25);
             this.label22.TabIndex = 21;
@@ -683,16 +786,16 @@
             this.comboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(140, 466);
+            this.comboBox10.Location = new System.Drawing.Point(140, 504);
             this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(251, 33);
+            this.comboBox10.Size = new System.Drawing.Size(269, 33);
             this.comboBox10.TabIndex = 20;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(18, 474);
+            this.label21.Location = new System.Drawing.Point(28, 512);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(95, 25);
             this.label21.TabIndex = 19;
@@ -701,131 +804,63 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(1042, 637);
+            this.button7.Location = new System.Drawing.Point(870, 637);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(251, 76);
+            this.button7.Size = new System.Drawing.Size(177, 76);
             this.button7.TabIndex = 18;
-            this.button7.Text = "Limpiar";
+            this.button7.Text = "Registrar Factura";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(1416, 637);
+            this.textBox4.Location = new System.Drawing.Point(1388, 637);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(100, 31);
+            this.textBox4.Size = new System.Drawing.Size(128, 31);
             this.textBox4.TabIndex = 17;
+            this.textBox4.Text = "0.00 CUP";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1344, 643);
+            this.label14.Location = new System.Drawing.Point(1316, 640);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 25);
             this.label14.TabIndex = 16;
             this.label14.Text = "Total:";
             // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(199, 609);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(112, 33);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Reservar";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(140, 336);
+            this.dateTimePicker1.Location = new System.Drawing.Point(140, 375);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(251, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(269, 31);
             this.dateTimePicker1.TabIndex = 14;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(212, 286);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(178, 318);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(121, 25);
+            this.label13.Size = new System.Drawing.Size(152, 31);
             this.label13.TabIndex = 13;
             this.label13.Text = "Rebooking:";
             // 
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(736, 637);
+            this.button5.Location = new System.Drawing.Point(662, 637);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(251, 76);
+            this.button5.Size = new System.Drawing.Size(177, 76);
             this.button5.TabIndex = 12;
             this.button5.Text = "Facturar";
             this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(412, 193);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 33);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "Agregar";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(412, 140);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 33);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Agregar";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(140, 194);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(251, 33);
-            this.comboBox4.TabIndex = 9;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(18, 202);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(95, 25);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "Servicio:";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(140, 140);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(251, 33);
-            this.comboBox3.TabIndex = 7;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(18, 148);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(104, 25);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Producto:";
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label10
             // 
@@ -843,7 +878,6 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Peluquero,
             this.Servicio,
-            this.Productos,
             this.Precio});
             this.dataGridView2.Location = new System.Drawing.Point(590, 58);
             this.dataGridView2.Name = "dataGridView2";
@@ -855,54 +889,27 @@
             this.Peluquero.HeaderText = "Peluquero";
             this.Peluquero.Name = "Peluquero";
             this.Peluquero.ReadOnly = true;
-            this.Peluquero.Width = 250;
+            this.Peluquero.Width = 300;
             // 
             // Servicio
             // 
             this.Servicio.HeaderText = "Servicio";
             this.Servicio.Name = "Servicio";
             this.Servicio.ReadOnly = true;
-            this.Servicio.Width = 250;
-            // 
-            // Productos
-            // 
-            this.Productos.HeaderText = "Productos";
-            this.Productos.Name = "Productos";
-            this.Productos.ReadOnly = true;
-            this.Productos.Width = 250;
+            this.Servicio.Width = 300;
             // 
             // Precio
             // 
             this.Precio.HeaderText = "Precio";
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
-            this.Precio.Width = 130;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(140, 86);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(251, 33);
-            this.comboBox2.TabIndex = 3;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(18, 94);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 25);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Peluquero:";
+            this.Precio.Width = 280;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(21, 38);
+            this.label8.Location = new System.Drawing.Point(28, 25);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(85, 25);
             this.label8.TabIndex = 1;
@@ -913,7 +920,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(140, 30);
+            this.comboBox1.Location = new System.Drawing.Point(140, 22);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(251, 33);
             this.comboBox1.TabIndex = 0;
@@ -971,6 +978,45 @@
             this.dataGridView3.Size = new System.Drawing.Size(1494, 582);
             this.dataGridView3.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.DimGray;
+            this.tabPage3.Controls.Add(this.dateTimePicker2);
+            this.tabPage3.Controls.Add(this.dataGridView4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 27);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1549, 740);
+            this.tabPage3.TabIndex = 4;
+            this.tabPage3.Text = "Agenda";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(34, 19);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 24);
+            this.dateTimePicker2.TabIndex = 1;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Hora});
+            this.dataGridView4.Location = new System.Drawing.Point(34, 49);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersWidth = 35;
+            this.dataGridView4.Size = new System.Drawing.Size(1495, 674);
+            this.dataGridView4.TabIndex = 0;
+            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
+            // 
+            // Hora
+            // 
+            this.Hora.HeaderText = "Hora";
+            this.Hora.Name = "Hora";
+            this.Hora.ReadOnly = true;
+            // 
             // NombreR
             // 
             this.NombreR.HeaderText = "Nombre";
@@ -983,7 +1029,7 @@
             this.TelefonoR.HeaderText = "Telefono";
             this.TelefonoR.Name = "TelefonoR";
             this.TelefonoR.ReadOnly = true;
-            this.TelefonoR.Width = 200;
+            this.TelefonoR.Width = 170;
             // 
             // CorreoR
             // 
@@ -1024,14 +1070,14 @@
             this.DesdeR.HeaderText = "Desde";
             this.DesdeR.Name = "DesdeR";
             this.DesdeR.ReadOnly = true;
-            this.DesdeR.Width = 75;
+            this.DesdeR.Width = 90;
             // 
             // HastaR
             // 
             this.HastaR.HeaderText = "Hasta";
             this.HastaR.Name = "HastaR";
             this.HastaR.ReadOnly = true;
-            this.HastaR.Width = 75;
+            this.HastaR.Width = 90;
             // 
             // AsistenciaR
             // 
@@ -1042,141 +1088,132 @@
             this.AsistenciaR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.AsistenciaR.Width = 60;
             // 
-            // tabPage3
+            // comboBox2
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.DimGray;
-            this.tabPage3.Controls.Add(this.dateTimePicker2);
-            this.tabPage3.Controls.Add(this.dataGridView4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 27);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1549, 740);
-            this.tabPage3.TabIndex = 4;
-            this.tabPage3.Text = "Agenda";
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(126, 193);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(269, 33);
+            this.comboBox2.TabIndex = 34;
             // 
-            // dateTimePicker2
+            // label9
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(34, 19);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePicker2.TabIndex = 1;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(4, 201);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(116, 25);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "Peluquero:";
             // 
-            // dataGridView4
+            // comboBox3
             // 
-            this.dataGridView4.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Hora});
-            this.dataGridView4.Location = new System.Drawing.Point(34, 49);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 35;
-            this.dataGridView4.Size = new System.Drawing.Size(1495, 674);
-            this.dataGridView4.TabIndex = 0;
-            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(126, 136);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(269, 33);
+            this.comboBox3.TabIndex = 32;
             // 
-            // Hora
+            // label11
             // 
-            this.Hora.HeaderText = "Hora";
-            this.Hora.Name = "Hora";
-            this.Hora.ReadOnly = true;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(14, 144);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(95, 25);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Servicio:";
             // 
-            // reportesToolStripMenuItem
+            // label12
             // 
-            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.reportesToolStripMenuItem.Text = "Reportes";
-            this.reportesToolStripMenuItem.Click += new System.EventHandler(this.reportesToolStripMenuItem_Click);
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(181, 99);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(160, 25);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Nuevo servicio:";
             // 
-            // comboBox12
+            // button1
             // 
-            this.comboBox12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "10",
-            "11",
-            "12",
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06"});
-            this.comboBox12.Location = new System.Drawing.Point(128, 409);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(57, 33);
-            this.comboBox12.TabIndex = 24;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(184, 232);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 43);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Agregar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // comboBox13
+            // button2
             // 
-            this.comboBox13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "00",
-            "15",
-            "30",
-            "45"});
-            this.comboBox13.Location = new System.Drawing.Point(191, 409);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(58, 33);
-            this.comboBox13.TabIndex = 25;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1080, 637);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(177, 76);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Limpiar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // comboBox15
+            // tabPage4
             // 
-            this.comboBox15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Items.AddRange(new object[] {
-            "00",
-            "15",
-            "30",
-            "45"});
-            this.comboBox15.Location = new System.Drawing.Point(347, 409);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(62, 33);
-            this.comboBox15.TabIndex = 27;
+            this.tabPage4.BackColor = System.Drawing.Color.DimGray;
+            this.tabPage4.Controls.Add(this.dataGridView5);
+            this.tabPage4.Controls.Add(this.label29);
+            this.tabPage4.Location = new System.Drawing.Point(4, 27);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1549, 740);
+            this.tabPage4.TabIndex = 5;
+            this.tabPage4.Text = "Clientes";
             // 
-            // comboBox14
+            // label29
             // 
-            this.comboBox14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Items.AddRange(new object[] {
-            "10",
-            "11",
-            "12",
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06"});
-            this.comboBox14.Location = new System.Drawing.Point(279, 409);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(62, 33);
-            this.comboBox14.TabIndex = 26;
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(691, 24);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(161, 37);
+            this.label29.TabIndex = 7;
+            this.label29.Text = "Busqueda";
             // 
-            // label24
+            // dataGridView5
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(150, 381);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(80, 25);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "Desde:";
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameA,
+            this.TelefonoA,
+            this.CorreoA});
+            this.dataGridView5.Location = new System.Drawing.Point(260, 64);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.Size = new System.Drawing.Size(1044, 601);
+            this.dataGridView5.TabIndex = 8;
             // 
-            // label25
+            // NameA
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(317, 381);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(74, 25);
-            this.label25.TabIndex = 29;
-            this.label25.Text = "Hasta:";
+            this.NameA.HeaderText = "Nombre";
+            this.NameA.Name = "NameA";
+            this.NameA.ReadOnly = true;
+            this.NameA.Width = 300;
+            // 
+            // TelefonoA
+            // 
+            this.TelefonoA.HeaderText = "Telefono";
+            this.TelefonoA.Name = "TelefonoA";
+            this.TelefonoA.ReadOnly = true;
+            this.TelefonoA.Width = 350;
+            // 
+            // CorreoA
+            // 
+            this.CorreoA.HeaderText = "Correo";
+            this.CorreoA.Name = "CorreoA";
+            this.CorreoA.ReadOnly = true;
+            this.CorreoA.Width = 350;
             // 
             // MiSalon
             // 
@@ -1209,6 +1246,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1235,23 +1275,13 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button CerrarDia;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label14;
@@ -1282,20 +1312,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Peluquero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Productos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TelefonoR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PeluqueroR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServicioR;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn RebookingR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DesdeR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HastaR;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn AsistenciaR;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
@@ -1313,6 +1329,33 @@
         private System.Windows.Forms.ComboBox comboBox14;
         private System.Windows.Forms.ComboBox comboBox13;
         private System.Windows.Forms.ComboBox comboBox12;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Peluquero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Servicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TelefonoR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PeluqueroR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ServicioR;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RebookingR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DesdeR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HastaR;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn AsistenciaR;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TelefonoA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoA;
+        private System.Windows.Forms.Label label29;
     }
 }
 

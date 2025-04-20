@@ -35,17 +35,13 @@ namespace Mi_Salon.Modulos
                 command.ExecuteNonQuery();
 
                 //Tabla de peluqueros
-                createTableQuery = "CREATE TABLE IF NOT EXISTS Peluqueros (Nombre TEXT,Telefono INTEGER,Correo TEXT)";
+                createTableQuery = "CREATE TABLE IF NOT EXISTS Peluqueros (Nombre TEXT,Telefono INTEGER)";
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
                 //Tabla de Ventas
-                createTableQuery = "CREATE TABLE IF NOT EXISTS Ventas (Nombre TEXT,Telefono INTEGER,Correo TEXT,Operacion TEXT,Peluquero TEXT, Rebooking INTEGER,Fecha TEXT)";
-                command = new SQLiteCommand(createTableQuery, connection);
-                command.ExecuteNonQuery();
-
-                //Tabla de Ausencia de clientes
-                createTableQuery = "CREATE TABLE IF NOT EXISTS Ausencia (Nombre TEXT,Telefono INTEGER,Correo TEXT,Operacion TEXT,Peluquero TEXT, Rebooking INTEGER,Fecha TEXT)";
+                createTableQuery = "CREATE TABLE IF NOT EXISTS Ventas (Nombre TEXT,Telefono INTEGER,Correo TEXT,Operacion TEXT,Peluquero TEXT, " +
+                    "Rebooking INTEGER,Fecha TEXT)";
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
@@ -60,7 +56,7 @@ namespace Mi_Salon.Modulos
                 command.ExecuteNonQuery();
 
                 //Tabla de facturas
-                createTableQuery = "CREATE TABLE IF NOT EXISTS Facturas (Id INTEGER PRIMARY KEY AUTOINCREMENT, Cliente TEXT,Peluquero TEXT,Total TEXT,Fecha TEXT)";
+                createTableQuery = "CREATE TABLE IF NOT EXISTS Facturas (Id TEXT, Cliente TEXT,Peluquero TEXT,Total TEXT,Fecha TEXT)";
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
@@ -147,20 +143,19 @@ namespace Mi_Salon.Modulos
         }
 
         //Guardar en base de datos de peluqueros
-        static public void RegistrarPeluquero(string ruta, string nombre, int telefono, string correo)
+        static public void RegistrarPeluquero(string ruta, string nombre, int telefono)
         {
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
             {
                 connection.Open();
 
                 // Consulta para insertar un peluquero
-                string insertQuery = "INSERT INTO Servicios (Nombre, Telefono, Correo) VALUES (@Nombre, @Telefono, @Correo)";
+                string insertQuery = "INSERT INTO Peluqueros (Nombre, Telefono) VALUES (@Nombre, @Telefono)";
                 SQLiteCommand command = new SQLiteCommand(insertQuery, connection);
 
                 // Agregar los parámetros
                 command.Parameters.AddWithValue("@Nombre", nombre);
                 command.Parameters.AddWithValue("@Telefono", telefono);
-                command.Parameters.AddWithValue("@Correo", correo);
 
                 // Ejecutar la consulta
                 command.ExecuteNonQuery();
@@ -196,19 +191,76 @@ namespace Mi_Salon.Modulos
             }
         }
 
-        //Eliminar de la base de datos reserva
-        static public bool EliminarReserva(string ruta, string nombre, int telefono, string fecha)
+        //Guardar en base de datos facturas
+        static public void RegistrarFactura(string ruta,List<string> peluqueros, string cliente,string fecha,List<double> precios)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
+            {
+                connection.Open();
+                List<string> nombres = new List<string>();
+                double valor = 0.00;
+
+                foreach (string name in peluqueros)
+                {
+                    valor = 0.00;
+                    if (nombres.Contains(name)) continue;
+                    nombres.Add(name);
+                    for (int i = 0; i < peluqueros.Count; i++)
+                    {
+                        if (name == peluqueros[i])
+                        {
+                            valor += precios[i];
+                        }
+                    }
+
+                    // Consulta para insertar un peluquero
+                    string insertQuery = "INSERT INTO Facturas (Id,Cliente, Peluquero,Total, Fecha) VALUES (@Id, @Cliente, @Peluquero,@Total,@Fecha)";
+                    SQLiteCommand command = new SQLiteCommand(insertQuery, connection);
+
+                    // Agregar los parámetros
+                    command.Parameters.AddWithValue("@Id", GenerarCodigoFactura());
+                    command.Parameters.AddWithValue("@Cliente", cliente);
+                    command.Parameters.AddWithValue("@Peluquero", name);
+                    command.Parameters.AddWithValue("@Total", valor);
+                    command.Parameters.AddWithValue("@Fecha", fecha);
+
+                    // Ejecutar la consulta
+                    command.ExecuteNonQuery();
+                }              
+            }
+
+            //Codigo de factura
+            string GenerarCodigoFactura()
+            {
+                // Crear una instancia de Random
+                Random random = new Random();
+
+                // Generar letras aleatorias (dos caracteres)
+                char letra1 = (char)random.Next('A', 'Z' + 1);
+                char letra2 = (char)random.Next('A', 'Z' + 1);
+
+                // Generar números aleatorios (4 dígitos)
+                int numeros = random.Next(1000, 9999);
+
+                // Combinar las letras y números en un código
+                return $"{letra1}{letra2}-{numeros}";
+            }
+        }
+
+        //Eliminar reserva de la base de datos 
+        static public bool EliminarReserva(string ruta, string nombre, int telefono, string fecha,string servicio)
         {
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
             {
                 connection.Open();
 
-                string deleteQuery = "DELETE FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono AND Fecha = @Fecha";
+                string deleteQuery = "DELETE FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono AND Fecha = @Fecha AND Servicio = @Servicio";
                 SQLiteCommand command = new SQLiteCommand(deleteQuery, connection);
 
                 command.Parameters.AddWithValue("@Nombre", nombre);
                 command.Parameters.AddWithValue("@Telefono", telefono);
                 command.Parameters.AddWithValue("@Fecha", fecha);
+                command.Parameters.AddWithValue("@Servicio", servicio);
 
                 try
                 {
@@ -222,99 +274,26 @@ namespace Mi_Salon.Modulos
             }
         }
 
-        //Eliminar de la base de datos reserva
-        static public bool EliminarTrabajador(string ruta, string nombre, int telefono, string correo)
+        //Eliminar trabajador de la base de datos 
+        static public bool EliminarTrabajador(string ruta, string nombre, int telefono)
         {
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
             {
                 connection.Open();
 
-                string deleteQuery = "DELETE FROM Peluqueros WHERE Nombre = @Nombre AND Telefono = @Telefono AND Correo = @Correo";
+                string deleteQuery = "DELETE FROM Peluqueros WHERE Nombre = @Nombre AND Telefono = @Telefono";
                 SQLiteCommand command = new SQLiteCommand(deleteQuery, connection);
 
                 try
                 {
                     command.Parameters.AddWithValue("@Nombre", nombre);
                     command.Parameters.AddWithValue("@Telefono", telefono);
-                    command.Parameters.AddWithValue("@Correo", correo);
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch
                 {
                     return false;
-                }
-            }
-        }
-
-        //Agregar a la base de datos ausencia las reservas del dia que no acudieron a su cita
-        static public void CierreDiario(string ruta, List<(string Nombre, int Telefono)> registros)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
-            {
-                connection.Open();
-
-                using (SQLiteTransaction transaction = connection.BeginTransaction())
-                {
-                    try
-                    {
-                        foreach (var registro in registros)
-                        {
-
-                            // Obtener los datos de la reserva
-                            string selectQuery = "SELECT Nombre, Telefono, Correo,Servicio, Peluquero, Rebooking, Fecha FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono";
-                            SQLiteCommand selectCommand = new SQLiteCommand(selectQuery, connection);
-                            selectCommand.Parameters.AddWithValue("@Nombre", registro.Nombre);
-                            selectCommand.Parameters.AddWithValue("@Telefono", registro.Telefono);
-
-                            SQLiteDataReader reader = selectCommand.ExecuteReader();
-
-                            if (reader.Read()) // Si encontramos la reserva
-                            {
-                                // Insertar los valores en la tabla Ausencia
-                                string insertQuery = "INSERT INTO Ausencia (Nombre, Telefono, Correo,Operacion, Peluquero, Rebooking, Fecha) " +
-                                    "VALUES (@Nombre, @Telefono, @Correo,@Operacion, @Peluquero, @Rebooking, @Fecha)";
-                                SQLiteCommand insertCommand = new SQLiteCommand(insertQuery, connection);
-
-                                insertCommand.Parameters.AddWithValue("@Nombre", reader["Nombre"]);
-                                insertCommand.Parameters.AddWithValue("@Telefono", reader["Telefono"]);
-                                insertCommand.Parameters.AddWithValue("@Correo", reader["Correo"]);
-                                insertCommand.Parameters.AddWithValue("@Operacion", reader["Servicio"]);
-                                insertCommand.Parameters.AddWithValue("@Peluquero", reader["Peluquero"]);
-                                insertCommand.Parameters.AddWithValue("@Rebooking", reader["Rebooking"]);
-                                insertCommand.Parameters.AddWithValue("@Fecha", reader["Fecha"]);
-
-                                insertCommand.ExecuteNonQuery();
-                            }
-
-                            reader.Close();
-
-                            //Eliminar de la base de datos Pendiente
-                            /*
-                                                        // Consulta para eliminar cada registro
-                                                        string deleteQuery = "DELETE FROM Reservas WHERE Nombre = @Nombre AND Telefono = @Telefono";
-                                                        SQLiteCommand command = new SQLiteCommand(deleteQuery, connection);
-
-                                                        // Agregar los parámetros
-                                                        command.Parameters.AddWithValue("@Nombre", registro.Nombre);
-                                                        command.Parameters.AddWithValue("@Telefono", registro.Telefono);
-
-                                                        // Ejecutar la consulta
-                                                        command.ExecuteNonQuery();
-                            */
-                        }
-
-
-                        // Confirmar la transacción
-                        transaction.Commit();
-                        MessageBox.Show("Cierre diario realizado con exito", "Aviso");
-                    }
-                    catch
-                    {
-                        // Revertir la transacción si algo falla
-                        transaction.Rollback();
-                        MessageBox.Show("Cierre diario fallido", "Aviso");
-                    }
                 }
             }
         }
@@ -431,5 +410,46 @@ namespace Mi_Salon.Modulos
 
             return resultados;
         }
+
+        //Obtencion de ventas
+        static public List<(string Peluquero, string Cliente,string Total, string Fecha)> ObtenerVentasPorPeluquero(string rutaBD, 
+            DateTime inicio, DateTime fin)
+        {
+            var resultados = new List<(string Peluquero, string Cliente,string Total, string Fecha)>();
+            string connection = $"Data Source={rutaBD};Version=3;";
+
+            using (SQLiteConnection conexion = new SQLiteConnection(connection))
+            {
+                conexion.Open();
+
+                string query = @"SELECT Peluquero, Cliente, Fecha, Total FROM Facturas WHERE Fecha BETWEEN @fechaInicio AND @fechaFin;";
+
+                using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@fechaInicio", inicio.ToString("yyyy-MM-dd"));
+                    comando.Parameters.AddWithValue("@fechaFin", fin.ToString("yyyy-MM-dd"));
+
+                    using (SQLiteDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string peluquero = reader["Peluquero"].ToString();
+                            string cliente = reader["Cliente"].ToString();
+                            string fecha = reader["Fecha"].ToString();
+                            string total = reader["Total"].ToString();
+
+                            resultados.Add((peluquero, cliente,total, fecha));
+                        }
+                    }
+                }
+            }
+            return resultados;
+        }
+
+        //Obtencion del porciento de retenencion de clientes 
+        
+
+
+        //Obtencion de clientes que vuelven en un periodo
     }
 }

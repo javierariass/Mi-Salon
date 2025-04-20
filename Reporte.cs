@@ -20,20 +20,30 @@ namespace Mi_Salon
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime fechaInicio = DateTime.Parse(dateTimePicker1.Text);
-            DateTime fechaFin = DateTime.Parse(dateTimePicker2.Text);
+            try
+            {
+                DateTime fechaInicio = DateTime.Parse(dateTimePicker1.Text);
+                DateTime fechaFin = DateTime.Parse(dateTimePicker2.Text);
 
-            // Obtener los clientes
-            var clientes = Functions.ObtenerClientes(appDataPath, fechaInicio, fechaFin);
-            var rebooking = Functions.ObtenerRebooking(appDataPath, fechaInicio, fechaFin);
+                // Obtener los clientes
+                var clientes = Functions.ObtenerClientes(appDataPath, fechaInicio, fechaFin);
 
-            InformeReservas informe = new InformeReservas(clientes, rebooking, fechaInicio.ToString("yyyy-MM-dd"), fechaFin.ToString("yyyy-MM-dd"));
+                var rebooking = Functions.ObtenerRebooking(appDataPath, fechaInicio, fechaFin);
 
-            // Generar el PDF
-            GenerarPDF(informe);
+                var ventas = Functions.ObtenerVentasPorPeluquero(appDataPath, fechaInicio, fechaFin);
+
+                InformeReservas informe = new InformeReservas(clientes, rebooking, ventas, fechaInicio.ToString("yyyy-MM-dd"), fechaFin.ToString("yyyy-MM-dd"));
+
+                // Generar el PDF
+                GenerarPDF(informe);
+            }
+            catch
+            {
+                MessageBox.Show("Sistema ocupado.Cierre el documento del reporte y vuelva a intentar","Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
-        //Menu de reporte de clientes nuevos
+        //Menu de reporte 
         static void GenerarPDF(InformeReservas informe)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -61,7 +71,9 @@ namespace Mi_Salon
                         doc.Add(new Paragraph(" "));
                         doc.Add(new Paragraph(" "));
 
-                        Paragraph newClient = new Paragraph("Listado de nuevos clientes: ");
+
+                        Font Font = FontFactory.GetFont(FontFactory.HELVETICA, 15); // Establecer tamaño 15
+                        Paragraph newClient = new Paragraph("Listado de nuevos clientes: ",Font);
                         newClient.Alignment = Element.ALIGN_CENTER;
                         doc.Add(newClient);
                         doc.Add(new Paragraph(" "));
@@ -84,9 +96,8 @@ namespace Mi_Salon
                         }
 
                         peluqueroActual = null;
-                        doc.Add(new Paragraph(" "));
-                        doc.Add(new Paragraph(" "));
-                        Paragraph newRebooking = new Paragraph("Cantidad de Clientes y Porciento Rebooking: ");
+                        doc.NewPage();
+                        Paragraph newRebooking = new Paragraph("Cantidad de Clientes y Porciento Rebooking: ",Font);
                         newRebooking.Alignment = Element.ALIGN_CENTER;
                         doc.Add(newRebooking);
                         doc.Add(new Paragraph(" "));
@@ -105,6 +116,36 @@ namespace Mi_Salon
                                 doc.Add(new Paragraph(" "));
                             }
                         }
+
+                        //Ventas totales por peluqueros
+                        doc.NewPage();
+                        Paragraph newVentas = new Paragraph("Ventas por peluqueros: ",Font);
+                        newVentas.Alignment = Element.ALIGN_CENTER;
+                        doc.Add(newVentas);
+                        doc.Add(new Paragraph(" "));
+
+                        // Ventas por peluquero
+
+                        List<string> nombres = new List<string>();
+                        foreach (var venta in informe.Ventas)
+                        {
+                            if (!nombres.Contains(venta.Peluquero))
+                            {
+                                nombres.Add(venta.Peluquero);
+                                doc.Add(new Paragraph(" "));
+                                doc.Add(new Paragraph($"Peluquero: {venta.Peluquero}"));
+                                doc.Add(new Paragraph(" "));
+                                for (int i = 0; i < informe.Ventas.Count;i++)
+                                {
+                                    if (informe.Ventas[i].Peluquero == venta.Peluquero)
+                                    {
+                                        doc.Add(new Paragraph($"- Cliente: {venta.Cliente}       Total de la venta: {venta.Total}         Fecha: {venta.Fecha}"));
+                                    }
+                                }                                                              
+                            }                          
+                        }
+
+
                         doc.Close();
                     }
 
@@ -122,13 +163,17 @@ public class InformeReservas
     public string FechaInicio { get; set; }
     public string FechaFinal { get; set; }
 
+    public List<(string Peluquero, string Cliente, string Total, string Fecha)> Ventas { get; set; }
+
     public InformeReservas(List<(string Nombre, string Peluquero, string Fecha)> clientes,
-                           List<(string Peluquero, string TotalReservas, string PorcentajeRebooking)> rebooking,
+                           List<(string Peluquero, string TotalReservas, string PorcentajeRebooking)> rebooking, 
+                           List<(string Peluquero, string Cliente, string Total, string Fecha)> ventas,
                            string fechaInicio, string fechaFinal)
     {
         Clientes = clientes;
         Rebooking = rebooking;
         FechaInicio = fechaInicio;
         FechaFinal = fechaFinal;
+        Ventas = ventas;
     }
 }

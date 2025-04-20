@@ -1,26 +1,26 @@
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\Mi Salon.exe.config
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\Mi Salon.exe
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\Mi Salon.pdb
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\EntityFramework.dll
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\itextsharp.dll
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\System.Data.SQLite.dll
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\System.Data.SQLite.EF6.dll
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\EntityFramework.xml
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\itextsharp.xml
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\System.Data.SQLite.xml
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.csproj.AssemblyReference.cache
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Informacion_General.resources
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.MiSalon.resources
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Properties.Resources.resources
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Registro_Trabajadores.resources
+C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Reporte.resources
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.csproj.GenerateResource.cache
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.csproj.CoreCompileInputs.cache
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.csproj.Up2Date
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.exe
 C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi Salon.pdb
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.MiSalon.resources
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Registro_Trabajadores.resources
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Informacion_General.resources
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\BouncyCastle.Cryptography.dll
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\itextsharp.dll
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\BouncyCastle.Cryptography.xml
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\bin\Debug\itextsharp.xml
-C:\Users\Javier\Documents\Programacion\C#\Mi Salon\obj\Debug\Mi_Salon.Reporte.resources

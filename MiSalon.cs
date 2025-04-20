@@ -17,6 +17,9 @@ using System.Xml.XPath;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.Win32;
+using System.Security.Cryptography;
+using System.Security.Policy;
+using static System.Net.WebRequestMethods;
 
 namespace Mi_Salon
 {
@@ -24,6 +27,10 @@ namespace Mi_Salon
     {
         string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MiSalon.db";
         List<string> NCliente = new List<string>();
+        List<string> servicios = new List<string>();
+        List<string> peluqueros = new List<string>();
+        List<double> precios = new List<double>();
+        double total = 0.00;
 
         public MiSalon()
         {
@@ -49,6 +56,7 @@ namespace Mi_Salon
         private void Actualizar()
         {
             Functions.Connection(appDataPath);
+            ClientesEnBase();
             string currentDate = DateTime.Now.ToString("yyyy-MM-dd"); // Standardized date format
             label7.Text = currentDate; // Ensure label uses the same format as the database
 
@@ -63,6 +71,10 @@ namespace Mi_Salon
             PeluquerosReserva.Items.AddRange(Functions.Peluqueros.ToArray());
             if (Functions.Peluqueros.Count != 0) PeluquerosReserva.SelectedIndex = 0;
 
+            comboBox2.Items.Clear();
+            comboBox2.Items.AddRange(Functions.Peluqueros.ToArray());
+            if (Functions.Peluqueros.Count != 0) comboBox2.SelectedIndex = 0;
+
             comboBox11.Items.Clear();
             comboBox11.Items.AddRange(Functions.Peluqueros.ToArray());
             if (Functions.Peluqueros.Count != 0) comboBox11.SelectedIndex = 0;
@@ -71,6 +83,9 @@ namespace Mi_Salon
             comboBox9.Items.Clear();
             comboBox9.Items.AddRange(Functions.Servicios.ToArray());
             if (Functions.Servicios.Count != 0) comboBox9.SelectedIndex = 0;
+            comboBox3.Items.Clear();
+            comboBox3.Items.AddRange(Functions.Servicios.ToArray());
+            if (Functions.Servicios.Count != 0) comboBox3.SelectedIndex = 0;
 
             comboBox10.Items.Clear();
             comboBox10.Items.AddRange(Functions.Servicios.ToArray());
@@ -79,18 +94,14 @@ namespace Mi_Salon
 
             // Clientes para facturar
             comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(NCliente.ToArray());
+            List<string> nombres = new List<string>();
+            foreach (string name in NCliente)
+            {
+                if (nombres.Contains(name)) continue;
+                nombres.Add(name);
+                comboBox1.Items.Add(name);
+            }            
             if (NCliente.Count != 0) comboBox1.SelectedIndex = 0;
-
-            // Peluqueros para facturar
-            comboBox2.Items.Clear();
-            comboBox2.Items.AddRange(Functions.Peluqueros.ToArray());
-            if (Functions.Peluqueros.Count != 0) comboBox2.SelectedIndex = 0;
-
-            //Servicios que puede Facturar
-            comboBox4.Items.Clear();
-            comboBox4.Items.AddRange(Functions.Servicios.ToArray());
-            if (Functions.Servicios.Count != 0) comboBox9.SelectedIndex = 0;
 
             //Establecer Hora
             comboBox5.SelectedIndex = 0;
@@ -229,29 +240,25 @@ namespace Mi_Salon
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox3.Text))
+                if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text))
                 {
                     string desde = comboBox5.Text + ":" + comboBox6.Text;
                     string hasta = comboBox7.Text + ":" + comboBox8.Text;
-                    desde = int.Parse(comboBox5.Text) >= 10 ? desde + " AM" : desde + " PM";
-                    hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " AM" : hasta + " PM";
+                    desde = int.Parse(comboBox5.Text) >= 10 && int.Parse(comboBox5.Text) < 12 ? desde + " a.m." : desde + " p.m.";
+                    hasta = int.Parse(comboBox7.Text) >= 10 && int.Parse(comboBox7.Text) < 12 ? hasta + " a.m." : hasta + " p.m";
                     string date = DateTime.Parse(dateTimeReservation.Text).ToString("yyyy-MM-dd");
                     string peluquero = PeluquerosReserva.SelectedItem.ToString();
                     int number = int.Parse(textBox2.Text);
-                    string correo = textBox3.Text;
-                    string nombre = textBox1.Text;
+                    string correo = !string.IsNullOrWhiteSpace(textBox3.Text) ?  textBox3.Text : " ";
+                    string nombre =  textBox1.Text;
 
-                    Functions.ReservarCita(appDataPath,nombre ,number , correo,peluquero , comboBox9.Text, 0, date, desde, hasta);
+                    Functions.ReservarCita(appDataPath, nombre, number, correo, peluquero, comboBox9.Text, 0, date, desde, hasta);
                     MessageBox.Show("Reserva realizada", "Aviso");
 
                     if (!Functions.IsNewClient(appDataPath, textBox1.Text))
                     {
-                        Functions.RegisterNewClient(appDataPath, nombre, number,correo,peluquero, date);
+                        Functions.RegisterNewClient(appDataPath, nombre, number, correo, peluquero, date);
                     }
-
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    textBox3.Text = "";
                     Actualizar();
                 }
                 else
@@ -278,8 +285,9 @@ namespace Mi_Salon
                 string nombre = dataGridView3.SelectedRows[0].Cells["NombreR"].Value.ToString();
                 int telefono = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells["TelefonoR"].Value);
                 string fecha = dataGridView3.SelectedRows[0].Cells["FechaR"].Value.ToString();
+                string servicio = dataGridView3.SelectedRows[0].Cells["ServicioR"].Value.ToString();
 
-                if (Functions.EliminarReserva(appDataPath, nombre, telefono, fecha))
+                if (Functions.EliminarReserva(appDataPath, nombre, telefono, fecha,servicio))
                 {
                     MessageBox.Show("Reserva de " + nombre + " ha sido eliminada", "Aviso");
                 }
@@ -294,31 +302,6 @@ namespace Mi_Salon
             {
                 MessageBox.Show("Aseguerese de haber marcado una fila", "Aviso");
             }
-        }
-
-        // Botón para cerrar el día
-        private void button2_Click(object sender, EventArgs e)
-        {
-            List<(string Nombre, int Telefono)> registros = new List<(string, int)>();
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (!row.IsNewRow && !bool.Parse(row.Cells["Asistencia"].Value.ToString()))
-                {
-                    string nombre = row.Cells["Nombre"].Value.ToString();
-                    int telefono = Convert.ToInt32(row.Cells["Telefono"].Value);
-
-                    registros.Add((nombre, telefono));
-                }
-            }
-
-            Functions.CierreDiario(appDataPath, registros);
-            Actualizar();
-        }
-
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -365,20 +348,29 @@ namespace Mi_Salon
         //Ubicar datos agenda
         private void UbicarDatosAgenda(string nota, string peluquero, string desde, string hasta)
         {
-
+            bool existe = false;
+            dataGridView4.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             for (int i = 0; i < dataGridView4.RowCount; i++)
             {
                 DataGridViewRow row = dataGridView4.Rows[i];
-                dataGridView4.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
                 if (!row.IsNewRow && desde == row.Cells["Hora"].Value.ToString())
                 {
-                    if (row.Cells[peluquero].Value == null) row.Cells[peluquero].Value = nota;
-                    else
+                    foreach (DataGridViewColumn columna in dataGridView4.Columns)
                     {
-                        row.Cells[peluquero].Value = row.Cells[peluquero].Value.ToString() + "\n" + nota;
+                        if (columna.Name == peluquero)
+                        {
+                            existe = true;
+                            if (row.Cells[peluquero].Value == null) row.Cells[peluquero].Value = nota;
+                            else
+                            {
+                                row.Cells[peluquero].Value = row.Cells[peluquero].Value.ToString() + "\n" + nota;
+                            }
+                            CambiarColorCeldas(peluquero, desde, hasta);
+                            break;
+                        }
                     }
-                    CambiarColorCeldas(peluquero, desde, hasta);
-                    break;
+                    if (existe) break;
                 }
             }
         }
@@ -405,6 +397,7 @@ namespace Mi_Salon
             }
 
         }
+
         //Menu actualizar
         private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -445,11 +438,13 @@ namespace Mi_Salon
         {
 
         }
+
         //Menu de registro de trabajadores
         private void registroDeTrabajadoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Registro_Trabajadores Registro = new Registro_Trabajadores();
             Registro.ShowDialog();
+            Actualizar();
         }
 
         private void informacionGeneralToolStripMenuItem_Click(object sender, EventArgs e)
@@ -464,14 +459,14 @@ namespace Mi_Salon
             Reporte reporte = new Reporte();
             reporte.ShowDialog();
         }
-
-        //Reservar rebooking
-        private void button6_Click(object sender, EventArgs e)
+     
+        //Funcion de reserva de rebooking
+        private void ReservarRebooking()
         {
             string desde = comboBox12.Text + ":" + comboBox13.Text;
             string hasta = comboBox14.Text + ":" + comboBox15.Text;
-            desde = int.Parse(comboBox5.Text) >= 10 ? desde + " AM" : desde + " PM";
-            hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " AM" : hasta + " PM";
+            desde = int.Parse(comboBox5.Text) >= 10 ? desde + " a.m." : desde + " p.m.";
+            hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " a.m." : hasta + " p.m.";
             string nombre = comboBox1.Text;
             string peluquero = comboBox11.Text;
             string servicio = comboBox10.Text;
@@ -504,6 +499,170 @@ namespace Mi_Salon
             Functions.ReservarCita(appDataPath, nombre, number, correo, peluquero, servicio, 1, date, desde, hasta);
             MessageBox.Show("Reserva realizada.", "Alerta");
             Actualizar();
+        }
+     
+
+        //Boton de Guardado de la factura
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string nombre = comboBox1.Text;
+            Functions.RegistrarFactura(appDataPath, peluqueros, nombre, DateTime.Now.ToString("yyyy-MM-dd"), precios);
+            if (checkBox1.Checked) ReservarRebooking();
+            dataGridView2.Rows.Clear();
+            textBox4.Text = "0.00 CUP";
+            peluqueros.Clear();
+            precios.Clear();
+            servicios.Clear();
+        }
+
+        //Boton de factura
+        private void button5_Click(object sender, EventArgs e)
+        {
+            total = 0.00;
+
+            dataGridView2.Rows.Clear();
+            string cadenaConexion = $"Data Source={appDataPath};Version=3;";
+            string nombre = comboBox1.Text;
+            
+
+            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            {
+                if (fila.Cells["Nombre"].Value != null && fila.Cells["Nombre"].Value.ToString() == nombre)
+                {
+                    servicios.Add(fila.Cells["Serv"].Value.ToString());
+                    peluqueros.Add(fila.Cells["PeluqueroReservado"].Value.ToString());
+
+                    using (SQLiteConnection conexion = new SQLiteConnection(cadenaConexion))
+                    {
+                        conexion.Open();
+
+                        string consulta = "SELECT Precio FROM Servicios WHERE Nombre = @nombre";
+
+                        using (SQLiteCommand comando = new SQLiteCommand(consulta, conexion))
+                        {
+                            comando.Parameters.AddWithValue("@nombre", fila.Cells["Serv"].Value.ToString());
+
+                            object resultado = comando.ExecuteScalar();
+                            precios.Add(double.Parse(resultado.ToString()));
+                        }
+                    }
+                }
+            }
+
+            //Total de precio
+            foreach (double valor in precios)
+            {
+                total += valor;
+            }
+            textBox4.Text = total.ToString() + " CUP";
+
+            //Ubicar en la tabla de factura
+            for (int i = 0; i < servicios.Count; i++)
+            {
+                int rowIndex = dataGridView2.Rows.Add();
+                DataGridViewRow row = dataGridView2.Rows[rowIndex];
+                row.Cells["Peluquero"].Value = peluqueros[i];
+                row.Cells["Servicio"].Value = servicios[i];
+                row.Cells["Precio"].Value = precios[i] + " CUP";
+
+
+                //Actualizar base de datos
+                using (SQLiteConnection conexion = new SQLiteConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    string consulta = "UPDATE Reservas SET Asistencia = @asistencia WHERE Nombre = @nombre AND Servicio = @servicio";
+
+                    using (SQLiteCommand comando = new SQLiteCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@asistencia", 1);
+                        comando.Parameters.AddWithValue("@nombre", nombre);
+                        comando.Parameters.AddWithValue("@servicio", servicios[i]);
+
+                        comando.ExecuteNonQuery();
+
+                    }
+                }
+            }          
+            Actualizar();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            servicios.Add(comboBox3.Text);
+            peluqueros.Add(comboBox2.Text);
+            double precio;
+
+            string cadenaConexion = $"Data Source={appDataPath};Version=3;";
+            string nombre = comboBox1.Text;
+            using (SQLiteConnection conexion = new SQLiteConnection(cadenaConexion))
+            {
+                conexion.Open();
+
+                string consulta = "SELECT Precio FROM Servicios WHERE Nombre = @nombre";
+
+                using (SQLiteCommand comando = new SQLiteCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@nombre", comboBox3.Text);
+
+                    object resultado = comando.ExecuteScalar();
+                    precios.Add(double.Parse(resultado.ToString()));
+                    precio = double.Parse(resultado.ToString());
+                }
+            }
+            int rowIndex = dataGridView2.Rows.Add();
+            DataGridViewRow row = dataGridView2.Rows[rowIndex];
+            row.Cells["Peluquero"].Value = comboBox2.Text;
+            row.Cells["Servicio"].Value = comboBox3.Text;
+            row.Cells["Precio"].Value = precio + " CUP";
+            total += precio;
+            textBox4.Text = total.ToString() + " CUP";
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView2.Rows.Clear();
+            textBox4.Text = "0.00 CUP";
+            peluqueros.Clear();
+            precios.Clear();
+            servicios.Clear();
+            total = 0.00;
+        }
+
+        private void ClientesEnBase()
+        {
+            string cadenaConexion = $"Data Source={appDataPath};Version=3;";
+            dataGridView5.Rows.Clear();
+            using (SQLiteConnection conexion = new SQLiteConnection(cadenaConexion))
+            {
+                conexion.Open();
+
+                string consulta = "SELECT * FROM NuevosClientes ";
+
+                using (SQLiteCommand comando = new SQLiteCommand(consulta, conexion))
+                {
+                    using (SQLiteDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int rowIndex = dataGridView5.Rows.Add();
+                            DataGridViewRow row = dataGridView5.Rows[rowIndex];
+
+                            row.Cells["NameA"].Value = reader["Nombre"];
+                            row.Cells["TelefonoA"].Value = reader["Telefono"];
+                            row.Cells["CorreoA"].Value = reader["Correo"];
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
