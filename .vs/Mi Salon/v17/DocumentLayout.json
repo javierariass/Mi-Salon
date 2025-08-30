@@ -7,16 +7,28 @@
       "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:misalon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\modulos\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:modulos\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|c:\\users\\javier\\documents\\programacion\\c#\\mi salon\\misalon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:misalon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\misalon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:misalon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|c:\\users\\javier\\documents\\programacion\\c#\\mi salon\\informacion_general.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:informacion_general.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\registro trabajadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:registro trabajadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\registro trabajadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:registro trabajadores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\reporte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:reporte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\modulos\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFBDEDAD-5437-414F-BF29-6293102780CC}|Mi Salon.csproj|solutionrelative:modulos\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +38,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Informacion_General.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Informacion_General.cs",
+              "RelativeDocumentMoniker": "Informacion_General.cs",
+              "ToolTip": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Informacion_General.cs [Design]",
+              "RelativeToolTip": "Informacion_General.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T23:07:51.091Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Registro Trabajadores.cs",
+              "DocumentMoniker": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Registro Trabajadores.cs",
+              "RelativeDocumentMoniker": "Registro Trabajadores.cs",
+              "ToolTip": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Registro Trabajadores.cs",
+              "RelativeToolTip": "Registro Trabajadores.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAYwCsAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T22:48:30.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Registro Trabajadores.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Registro Trabajadores.cs",
+              "RelativeDocumentMoniker": "Registro Trabajadores.cs",
+              "ToolTip": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Registro Trabajadores.cs [Design]",
+              "RelativeToolTip": "Registro Trabajadores.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T22:48:27.269Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Reporte.cs",
               "DocumentMoniker": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Reporte.cs",
               "RelativeDocumentMoniker": "Reporte.cs",
@@ -38,21 +85,19 @@
               "RelativeToolTip": "Reporte.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwCkAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T15:33:46.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T15:33:46.431Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Functions.cs",
               "DocumentMoniker": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Modulos\\Functions.cs",
               "RelativeDocumentMoniker": "Modulos\\Functions.cs",
               "ToolTip": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\Modulos\\Functions.cs",
               "RelativeToolTip": "Modulos\\Functions.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAgwG0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAAwJEAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T02:46:11.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-12T02:46:11.739Z"
             },
             {
               "$type": "Document",
@@ -62,14 +107,14 @@
               "RelativeDocumentMoniker": "MiSalon.cs",
               "ToolTip": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\MiSalon.cs",
               "RelativeToolTip": "MiSalon.cs",
-              "ViewState": "AgIAAGUCAAAAAAAAAAAUwHkCAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAkwPEAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-11T20:02:12.193Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MiSalon.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Javier\\Documents\\Programacion\\C#\\Mi Salon\\MiSalon.cs",
               "RelativeDocumentMoniker": "MiSalon.cs",

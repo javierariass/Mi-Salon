@@ -20,6 +20,8 @@ using Microsoft.Win32;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using static System.Net.WebRequestMethods;
+using System.Globalization;
+using Org.BouncyCastle.Crypto;
 
 namespace Mi_Salon
 {
@@ -159,6 +161,7 @@ namespace Mi_Salon
                 };
                 dataGridView.Columns.Add(Trabajador); // El encabezado será el nombre
             }
+            UbicarPeluquerosDeTurno();
             DatosAgenda();
         }
 
@@ -241,11 +244,18 @@ namespace Mi_Salon
             try
             {
                 if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text))
-                {
+                {                    
+                    string amDesignator = CultureInfo.CurrentCulture.DateTimeFormat.AMDesignator;
+                    string pmDesignator = CultureInfo.CurrentCulture.DateTimeFormat.PMDesignator;
+
                     string desde = comboBox5.Text + ":" + comboBox6.Text;
                     string hasta = comboBox7.Text + ":" + comboBox8.Text;
-                    desde = int.Parse(comboBox5.Text) >= 10 && int.Parse(comboBox5.Text) < 12 ? desde + " a.m." : desde + " p.m.";
-                    hasta = int.Parse(comboBox7.Text) >= 10 && int.Parse(comboBox7.Text) < 12 ? hasta + " a.m." : hasta + " p.m";
+
+                    desde = int.Parse(comboBox5.Text) >= 10 && int.Parse(comboBox5.Text) < 12 ? desde + " " + amDesignator : desde + " " + pmDesignator;
+                    hasta = int.Parse(comboBox7.Text) >= 10 && int.Parse(comboBox7.Text) < 12 ? hasta + " " + amDesignator : hasta + " " + pmDesignator;
+
+                    Console.WriteLine("Desde: " + desde);
+                    Console.WriteLine("Hasta: " + hasta);
                     string date = DateTime.Parse(dateTimeReservation.Text).ToString("yyyy-MM-dd");
                     string peluquero = PeluquerosReserva.SelectedItem.ToString();
                     int number = int.Parse(textBox2.Text);
@@ -319,7 +329,7 @@ namespace Mi_Salon
         private void DatosAgenda()
         {
             string fecha = DateTime.Parse(dateTimePicker2.Value.ToString()).ToString("yyyy-MM-dd");
-            string nota, peluquero, desde, hasta;
+            string nota, peluquero, desde, hasta,firstDay;
 
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={appDataPath};Version=3;"))
             {
@@ -336,6 +346,7 @@ namespace Mi_Salon
                         {
                             nota = reader["Nombre"].ToString() + " " + reader["Servicio"].ToString();
                             peluquero = reader["Peluquero"].ToString();
+                            firstDay = reader["Fecha"].ToString();
                             desde = reader["Desde"].ToString();
                             hasta = reader["Hasta"].ToString();
                             UbicarDatosAgenda(nota, peluquero, desde, hasta);
@@ -345,6 +356,36 @@ namespace Mi_Salon
             }
         }
 
+        //Ubicar Peluqueros en agenda
+        private void UbicarPeluquerosDeTurno()
+        {
+            string amDesignator = CultureInfo.CurrentCulture.DateTimeFormat.AMDesignator;
+            string pmDesignator = CultureInfo.CurrentCulture.DateTimeFormat.PMDesignator;
+            string fecha = DateTime.Parse(dateTimePicker2.Value.ToString()).ToString("yyyy-MM-dd");
+            string first, peluquero;
+
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={appDataPath};Version=3;"))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Peluqueros";
+
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            peluquero = reader["Nombre"].ToString();
+                            first = reader["Fecha"].ToString();
+                            if (!IsWorking(DateTime.Parse(fecha), DateTime.Parse(first), 4, 2))
+                            {
+                                CambiarColorCeldas(peluquero, "10:00 " + amDesignator, "6:00 " + pmDesignator, Color.DarkRed);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         //Ubicar datos agenda
         private void UbicarDatosAgenda(string nota, string peluquero, string desde, string hasta)
         {
@@ -366,7 +407,7 @@ namespace Mi_Salon
                             {
                                 row.Cells[peluquero].Value = row.Cells[peluquero].Value.ToString() + "\n" + nota;
                             }
-                            CambiarColorCeldas(peluquero, desde, hasta);
+                            CambiarColorCeldas(peluquero, desde, hasta, Color.GreenYellow);
                             break;
                         }
                     }
@@ -376,7 +417,7 @@ namespace Mi_Salon
         }
 
         //Colorear agenda
-        private void CambiarColorCeldas(string peluquero, string desde, string hasta)
+        private void CambiarColorCeldas(string peluquero, string desde, string hasta, Color change)
         {
             for (int i = 0; i < dataGridView4.RowCount; i++)
             {
@@ -386,12 +427,12 @@ namespace Mi_Salon
                     row.Cells[peluquero].Style.BackColor = Color.LightGreen;
                     while (hasta != row.Cells["Hora"].Value.ToString())
                     {
+                        row.Cells[peluquero].Style.BackColor = change;
                         i++;
                         row = dataGridView4.Rows[i];
-                        if (row.IsNewRow) break;
-                        row.Cells[peluquero].Style.BackColor = Color.LightGreen;
-
+                        if (row.IsNewRow) break;  
                     }
+                    row.Cells[peluquero].Style.BackColor = change;
                     break;
                 }
             }
@@ -463,10 +504,14 @@ namespace Mi_Salon
         //Funcion de reserva de rebooking
         private void ReservarRebooking()
         {
+            string amDesignator = CultureInfo.CurrentCulture.DateTimeFormat.AMDesignator;
+            string pmDesignator = CultureInfo.CurrentCulture.DateTimeFormat.PMDesignator;
+
             string desde = comboBox12.Text + ":" + comboBox13.Text;
             string hasta = comboBox14.Text + ":" + comboBox15.Text;
-            desde = int.Parse(comboBox5.Text) >= 10 ? desde + " a.m." : desde + " p.m.";
-            hasta = int.Parse(comboBox7.Text) >= 10 ? hasta + " a.m." : hasta + " p.m.";
+
+            desde = int.Parse(comboBox12.Text) >= 10 && int.Parse(comboBox5.Text) < 12 ? desde + " " + amDesignator : desde + " " + pmDesignator;
+            hasta = int.Parse(comboBox14.Text) >= 10 && int.Parse(comboBox7.Text) < 12 ? hasta + " " + amDesignator : hasta + " " + pmDesignator;
             string nombre = comboBox1.Text;
             string peluquero = comboBox11.Text;
             string servicio = comboBox10.Text;
@@ -660,7 +705,25 @@ namespace Mi_Salon
 
         }
 
+        static bool IsWorking(DateTime fechaConsulta, DateTime fechaInicio, int diasTrabajo, int diasDescanso)
+        {
+            // Cálculo del número de días transcurridos desde el inicio
+            int diasTranscurridos = (fechaConsulta - fechaInicio).Days;
+
+            // Obtener la posición dentro del ciclo
+            int posicionCiclo = diasTranscurridos % (diasTrabajo + diasDescanso);
+
+            posicionCiclo = posicionCiclo < 0 ? diasTrabajo : posicionCiclo; 
+            // Retorna verdadero si está dentro de los días de trabajo
+            return posicionCiclo < diasTrabajo;
+        }
+
         private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox14_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

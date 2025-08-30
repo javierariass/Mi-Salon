@@ -35,7 +35,7 @@ namespace Mi_Salon.Modulos
                 command.ExecuteNonQuery();
 
                 //Tabla de peluqueros
-                createTableQuery = "CREATE TABLE IF NOT EXISTS Peluqueros (Nombre TEXT,Telefono INTEGER)";
+                createTableQuery = "CREATE TABLE IF NOT EXISTS Peluqueros (Nombre TEXT,Telefono INTEGER,Fecha TEXT)";
                 command = new SQLiteCommand(createTableQuery, connection);
                 command.ExecuteNonQuery();
 
@@ -143,19 +143,20 @@ namespace Mi_Salon.Modulos
         }
 
         //Guardar en base de datos de peluqueros
-        static public void RegistrarPeluquero(string ruta, string nombre, int telefono)
+        static public void RegistrarPeluquero(string ruta, string nombre, int telefono, string fecha)
         {
             using (SQLiteConnection connection = new SQLiteConnection($"Data Source={ruta};Version=3;"))
             {
                 connection.Open();
 
                 // Consulta para insertar un peluquero
-                string insertQuery = "INSERT INTO Peluqueros (Nombre, Telefono) VALUES (@Nombre, @Telefono)";
+                string insertQuery = "INSERT INTO Peluqueros (Nombre, Telefono,Fecha) VALUES (@Nombre, @Telefono, @Fecha)";
                 SQLiteCommand command = new SQLiteCommand(insertQuery, connection);
 
                 // Agregar los parámetros
                 command.Parameters.AddWithValue("@Nombre", nombre);
                 command.Parameters.AddWithValue("@Telefono", telefono);
+                command.Parameters.AddWithValue("@Fecha", fecha);
 
                 // Ejecutar la consulta
                 command.ExecuteNonQuery();

@@ -56,7 +56,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(182, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Fecha: 15-4-2025";
+            this.label2.Text = "Fecha: 17-5-2025";
             // 
             // label3
             // 
@@ -66,7 +66,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 25);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Version: 1.0a";
+            this.label3.Text = "Version: 2.0a";
             // 
             // label4
             // 

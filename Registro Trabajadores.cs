@@ -34,7 +34,7 @@ namespace Mi_Salon
             {
                 if (!string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox1.Text))
                 {
-                    Functions.RegistrarPeluquero(appDataPath, textBox1.Text, int.Parse(textBox2.Text));
+                    Functions.RegistrarPeluquero(appDataPath, textBox1.Text, int.Parse(textBox2.Text),DateTime.Parse(dateTimePicker1.Text).ToString("yyyy-MM-dd"));
                     MessageBox.Show("Registrado con exito.", "Informe");
                     Actualizar();
                 }
@@ -92,6 +92,11 @@ namespace Mi_Salon
                     }
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
